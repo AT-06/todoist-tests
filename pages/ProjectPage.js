@@ -1,46 +1,41 @@
 let Page = require('./Page');
+let obtain = require('../utils/ProjectTaskLib');
 
 class ProjectPage extends Page {
     // Getting "Project Name" TextField.
     get projectName() {
         let elementCSS = '#projects_list div.richtext_editor.sel_richtext_editor';
-        this.actionWaitTo(elementCSS, 0);
-        return browser.element(elementCSS);
+        return obtain.returnElementCSS(elementCSS, 0);
     }
 
     // Getting "+ Add Project" element.
     get projectMenu() {
         let elementCSS = '#projects_list_manager a.action.sel_add_project';
-        this.actionWaitTo(elementCSS, 5000);
-        return browser.element(elementCSS);
+        return obtain.returnElementCSS(elementCSS, 5000);
     }
 
     // Getting "Add Project" button.
     get projectAddSubmit() {
         let elementCSS = '#projects_list a.ist_button.ist_button_red.submit_btn';
-        this.actionWaitTo(elementCSS, 0);
-        return browser.element(elementCSS);
+        return obtain.returnElementCSS(elementCSS, 0);
     }
 
     // Getting Project List on left side bar.
     get projectListOfProjects() {
         let elementCSS = '#projects_list';
-        this.actionWaitTo(elementCSS, 0);
-        return browser.element(elementCSS);
+        return obtain.returnElementCSS(elementCSS, 0);
     }
 
     // Getting "Delete Project" option on right click menu.
     get optionDeleteOnMenu() {
         let elementCSS = '#menu_delete_text';
-        this.actionWaitTo(elementCSS, 2000);
-        return browser.element(elementCSS);
+        return obtain.returnElementCSS(elementCSS, 2000);
     }
 
     // Getting element of Project Name on Editor.
     get projectOnEditor() {
         let elementCSS = '#editor a.project_link';
-        this.actionWaitTo(elementCSS, 2000);
-        return browser.element(elementCSS);
+        return obtain.returnElementCSS(elementCSS, 2000);
     }
 
     // Getting String Project Name on Editor.
@@ -62,22 +57,19 @@ class ProjectPage extends Page {
     // Getting "Delete" button to confirm deleting.
     get deleteProjectButtonConfirmation() {
         let elementCSS = '#GB_window a.ist_button.ist_button_red';
-        this.actionWaitTo(elementCSS, 5000);
-        return browser.element(elementCSS);
+        return obtain.returnElementCSS(elementCSS, 5000);
     }
 
     // Getting "Edit Project" option on right menu (NOT WORKING).
     get optionModifyOnMenu() {
         let elementCSS = 'td[data-track="projects|menu_edit"]';
-        this.actionWaitTo(elementCSS, 5000);
-        return browser.element(elementCSS);
+        return obtain.returnElementCSS(elementCSS, 5000);
     }
 
     // Getting "Edit Project" option on right menu (NOT WORKING).
     get textOfProjectNameToModify() {
         let elementCSS = '#projects_list div.richtext_editor.sel_richtext_editor';
-        this.actionWaitTo(elementCSS, 5000);
-        return browser.element(elementCSS);
+        return obtain.returnElementCSS(elementCSS, 5000);
     }
 
     // Getting size of project list.
