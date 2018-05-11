@@ -1,0 +1,13 @@
+{
+  "acc1_email": "",
+  "acc1_password": "",
+  "projectToAdd": "Project to Added",
+  "projectToModify": "Project MODIFIED",
+  "projectToDelete": "Project to delete",
+
+  "acc2_email": "",
+  "acc2_password": "",
+  "taskAdded": "Task added",
+  "taskModified" : "Task MODIFIED",
+  "taskToBeDeleted": "Task to be deleted"
+}
