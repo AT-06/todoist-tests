@@ -63,9 +63,6 @@ class TaskPage extends Page {
         this.addTask(taskNameToModify);
         if (this.lastTaskOnList.getText() === taskNameToModify) {
             this.lastTaskOnList.rightClick();
-            // this.optionModifyOnMenu.click();
-            // this.textOfProjectNameToModify.setValue(newProjectName);
-            // this.saveModifyButton.click();
             browser.pause(3000);
         }
     }
