@@ -12,9 +12,7 @@ describe('Acceptance Tests for Task feature', function () {
     it('should allow to add a new task', function () {
         // Adding a task with 'Task added' name.
         TaskPage.addTask(config.taskAdded);
-        // expect(TaskPage.lastTaskOnList.getText()).to.have.equal('Task added\nInbox');
     });
-
 
     it('should allow to delete a task', function () {
         // Adding and deleting a task.

@@ -51,9 +51,7 @@ class TaskPage extends Page {
     }
 
     addTask(taskName) {
-        browser.pause(10000);
         this.addTaskToday.click();
-        // browser.pause(10000);
         this.taskName.setValue(taskName);
         this.taskAddSubmit.click();
         browser.pause(3000);
