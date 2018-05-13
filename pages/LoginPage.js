@@ -1,25 +1,26 @@
 let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
-
+let timeToWait = 30000;
 class LoginPage extends Page {
     // Getting email element.
     get email() {
         let elementCSS = '#email';
-        componentAction.returnElementCSS(elementCSS, 0);
+
+        componentAction.getElement(elementCSS, timeToWait);
         return browser.element(elementCSS);
     }
 
     // Getting password element.
     get password() {
         let elementCSS = '#password';
-        componentAction.returnElementCSS(elementCSS, 0);
+        componentAction.getElement(elementCSS, timeToWait);
         return browser.element(elementCSS);
     }
 
     // Getting submit button element.
     get submit() {
         let elementCSS = '#login_form';
-        componentAction.returnElementCSS(elementCSS, 0);
+        componentAction.getElement(elementCSS, timeToWait);
         return browser.element(elementCSS);
     }
 

@@ -14,10 +14,11 @@ describe('Acceptance Tests to Project feature', function () {
 
     it('should allow to add new project', function () {
         leftSidebarPage.addProject(config.projectToAdd);
+
         // Verify if last Project added name is equal to "projectToAddName".
         expect(leftSidebarPage.lastProjectOnList.getText()).to.have.equal(config.projectToAdd);
         // Verify if last project name as shown on editor.
-        expect(contentPage.assertOnEditor).to.have.contain(config.projectToAdd)
+        expect(contentPage.assertProjectOnContent).to.have.contain(config.projectToAdd)
     });
 
     it('should allow to Modify a project', function () {
