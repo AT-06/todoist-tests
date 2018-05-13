@@ -1,6 +1,7 @@
 let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
 let timeToWait = 30000;
+
 class LoginPage extends Page {
     // Getting email element.
     get email() {

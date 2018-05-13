@@ -14,7 +14,7 @@ let timeToWait = 30000;
 class LeftSidebarPage extends Page {
 
     get lastProjectOnList() {
-        return componentAction.lastElementOnList(projectListOnLeftSidebar, timeToWait,1);
+        return componentAction.lastElementOnList(projectListOnLeftSidebar, timeToWait, 1);
     }
 
     // This method is to add new project.
@@ -29,7 +29,7 @@ class LeftSidebarPage extends Page {
 
     // This method is to modify one project.
     modifyProject(projectNameToModify, newProjectName) {
-        componentAction.waitToLoading( timeToWait);
+        componentAction.waitToLoading(timeToWait);
         // Adding new project to modify.
         this.addProject(projectNameToModify);
         if (this.lastProjectOnList.getText() === projectNameToModify) {
@@ -43,7 +43,7 @@ class LeftSidebarPage extends Page {
 
     // This method is to delete a project.
     deleteProject(projectNameToDelete) {
-        componentAction.waitToLoading( timeToWait);
+        componentAction.waitToLoading(timeToWait);
         // Adding new project to delete.
         this.addProject(projectNameToDelete);
         if (this.lastProjectOnList.getText().includes(projectNameToDelete)) {

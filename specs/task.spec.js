@@ -3,6 +3,11 @@ let config = require('../config.json');
 let expect = require('chai').expect;
 let loginPage = require('../pages/LoginPage');
 let contentPage = require('../pages/ContentPage');
+let toolbarPage = require('../pages/ToolbarPage');
+let taskAdded = 'Task added';
+let taskModified = 'Task MODIFIED';
+let taskToBeDeleted = 'Task to be deleted';
+let quickTaskAdded = 'Quick task added';
 
 describe('Acceptance Tests for Task feature', function () {
     beforeEach(function () {
@@ -11,11 +16,15 @@ describe('Acceptance Tests for Task feature', function () {
 
     it('should allow to add a new task', function () {
         // Adding a task with 'Task added' name.
-        contentPage.addTask(config.taskAdded);
+        contentPage.addTask(taskAdded);
     });
 
     it('should allow to delete a task', function () {
         // Adding and deleting a task.
-        contentPage.deleteTask(config.taskToBeDeleted);
+        contentPage.deleteTask(taskToBeDeleted);
+    });
+    it('should allow to add a quick task', function () {
+        // Adding and deleting a task.
+        toolbarPage.addQuickTask(quickTaskAdded);
     });
 });
