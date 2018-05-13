@@ -3,7 +3,7 @@ const addTaskToday = '#editor a.action';
 const taskAddSubmit = '#editor a.ist_button span';
 const optionDeleteTask = 'tr.menu_item_delete:nth-child(13) > td';
 const deleteTaskButtonConfirmation = '#GB_window a.ist_button.ist_button_red';
-const taskList ='#agenda_view';
+const taskList = '#agenda_view';
 let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
 let timeToWait = 30000;
@@ -15,7 +15,7 @@ class ContentPage extends Page {
         let elementCSS = '#editor a.project_link';
         return componentAction.getElement(elementCSS, timeToWait);
     }
-    
+
     // Getting String Project Name on Editor.
     get assertProjectOnContent() {
         let assert = '';
@@ -27,9 +27,8 @@ class ContentPage extends Page {
 
     // Getting last project of list
     get lastTaskOnList() {
-        return componentAction.lastElementOnList(taskList, timeToWait,3);
+        return componentAction.lastElementOnList(taskList, timeToWait, 3);
     }
-
 
     addTask(taskName) {
         browser.pause(4000);
@@ -41,7 +40,7 @@ class ContentPage extends Page {
     }
 
     modifyTask(taskNameToModify, newTaskName) { // please finish this.
-        browser.waitForVisible('#loading',timeToWait,true);
+        browser.waitForVisible('#loading', timeToWait, true);
         this.addTask(taskNameToModify);
         if (this.lastTaskOnList.getText() === taskNameToModify) {
             this.lastTaskOnList.rightClick();
@@ -50,10 +49,10 @@ class ContentPage extends Page {
     }
 
     deleteTask(taskNameToDelete) {
-        componentAction.waitToLoading( timeToWait);
+        componentAction.waitToLoading(timeToWait);
         // Adding new project to delete.
         this.addTask(taskNameToDelete);
-        if (this.lastTaskOnList.getText().includes(taskNameToDelete)){
+        if (this.lastTaskOnList.getText().includes(taskNameToDelete)) {
             this.lastTaskOnList.rightClick();
             componentAction.clickElement(optionDeleteTask, timeToWait);
             componentAction.clickElement(deleteTaskButtonConfirmation, timeToWait);
