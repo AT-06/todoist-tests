@@ -6,7 +6,7 @@ let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
 let timeToWait = 30000;
 
-class ContentPage extends Page {
+class ToolbarPage extends Page {
     addQuickTask(taskName) {
         browser.pause(4000);
         componentAction.waitToLoading(timeToWait);
@@ -17,4 +17,4 @@ class ContentPage extends Page {
     }
 }
 
-module.exports = new ContentPage;
+module.exports = new ToolbarPage;
