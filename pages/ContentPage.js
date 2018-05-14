@@ -10,13 +10,12 @@ const taskList = '#agenda_view';
 const projectOnContent = '#editor a.project_link';
 let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
-let timeToWait = 30000;
 
 class ContentPage extends Page {
 
     // Getting element of Project Name on Editor.
     get projectOnContent() {
-        return componentAction.getElement(projectOnContent, timeToWait);
+        return componentAction.getElement(projectOnContent);
     }
 
     // Getting String Project Name on Editor.
@@ -30,38 +29,38 @@ class ContentPage extends Page {
 
     // Getting String Project Name on Editor.
     assertTaskOnContent(task) {
-        let element = componentAction.elementOnList(taskList, timeToWait, task);
+        let element = componentAction.elementOnList(taskList, task);
         return task === element.getText;
 
     }
 
     addTask(taskName) {
         browser.pause(4000);
-        componentAction.waitToLoading(timeToWait);
+        componentAction.waitToLoading();
         if (browser.isVisible(addTaskToday)) {
-            componentAction.clickElement(addTaskToday, timeToWait);
+            componentAction.clickElement(addTaskToday);
         }
-        componentAction.setValueElement(takNameTextField, taskName, timeToWait)
-        componentAction.clickElement(taskAddSubmit, timeToWait);
+        componentAction.setValueElement(takNameTextField, taskName)
+        componentAction.clickElement(taskAddSubmit);
         browser.pause(5000);
     }
 
     modifyTask(taskNameToModify, newTaskName) {
-        componentAction.waitToLoading(timeToWait);
-        let elementToModify = componentAction.elementOnList(taskList, timeToWait, taskNameToModify);
+        componentAction.waitToLoading();
+        let elementToModify = componentAction.elementOnList(taskList, taskNameToModify);
         componentAction.rightClickElement(elementToModify);
-        componentAction.clickElement(taskModifyOption, timeToWait);
-        componentAction.setValueElement(taskNameTextField, newTaskName, timeToWait);
-        componentAction.clickElement(taskSaveButton, timeToWait);
+        componentAction.clickElement(taskModifyOption, );
+        componentAction.setValueElement(taskNameTextField, newTaskName);
+        componentAction.clickElement(taskSaveButton);
         browser.pause(5000);
     }
 
     deleteTask(taskNameToDelete) {
-        componentAction.waitToLoading(timeToWait);
-        let elementToDelete = componentAction.elementOnList(taskList, timeToWait, taskNameToDelete);
+        componentAction.waitToLoading();
+        let elementToDelete = componentAction.elementOnList(taskList, taskNameToDelete);
         componentAction.rightClickElement(elementToDelete);
-        componentAction.clickElement(optionDeleteTask, timeToWait);
-        componentAction.clickElement(deleteTaskButtonConfirmation, timeToWait);
+        componentAction.clickElement(optionDeleteTask);
+        componentAction.clickElement(deleteTaskButtonConfirmation);
         browser.pause(5000);
 
     }
