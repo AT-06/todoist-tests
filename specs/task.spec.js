@@ -17,14 +17,24 @@ describe('Acceptance Tests for Task feature', function () {
     it('should allow to add a new task', function () {
         // Adding a task with 'Task added' name.
         contentPage.addTask(taskAdded);
+        expect(contentPage.lastTaskOnList.getText()).to.have.contain(taskAdded);
+        // expect(contentPage.assertProjectOnContent).to.have.contain(projectToAdd)
+    });
+
+    it('should allow to modify a new task', function () {
+        // Adding a task with 'Task added' name.
+        contentPage.modifyTask(taskAdded, taskModified);
+        expect(contentPage.lastTaskOnList2.getText()).to.have.contain(taskModified)
     });
 
     it('should allow to delete a task', function () {
         // Adding and deleting a task.
         contentPage.deleteTask(taskToBeDeleted);
+        expect(contentPage.lastTaskOnList.getText()).to.have.not.equal(taskToBeDeleted);
     });
     it('should allow to add a quick task', function () {
         // Adding and deleting a task.
         toolbarPage.addQuickTask(quickTaskAdded);
+        expect(contentPage.lastTaskOnList2.getText()).to.have.contain(quickTaskAdded);
     });
 });

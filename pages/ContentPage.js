@@ -1,6 +1,9 @@
 const takNameTextField = '#agenda_view  td.text_box_holder div';
 const addTaskToday = '#editor a.action';
 const taskAddSubmit = '#editor a.ist_button span';
+const taskModifyOption = 'div:nth-child(21) > table > tbody > tr.menu_item_edit > td';
+const taskSaveButton = ' a.ist_button.ist_button_red.submit_btn';
+const taskNameTextField = '#agenda_view > div > ul > li.manager.indent_1 > form > table:nth-child(1) > tbody > tr > td > table > tbody > tr > td.text_box_holder > div';
 const optionDeleteTask = 'tr.menu_item_delete:nth-child(13) > td';
 const deleteTaskButtonConfirmation = '#GB_window a.ist_button.ist_button_red';
 const taskList = '#agenda_view';
@@ -30,6 +33,10 @@ class ContentPage extends Page {
         return componentAction.lastElementOnList(taskList, timeToWait, 3);
     }
 
+    get lastTaskOnList2() {
+        return componentAction.lastElementOnList(taskList, timeToWait, 2);
+    }
+
     addTask(taskName) {
         browser.pause(4000);
         componentAction.waitToLoading(timeToWait);
@@ -42,8 +49,11 @@ class ContentPage extends Page {
     modifyTask(taskNameToModify, newTaskName) { // please finish this.
         browser.waitForVisible('#loading', timeToWait, true);
         this.addTask(taskNameToModify);
-        if (this.lastTaskOnList.getText() === taskNameToModify) {
+        if (this.lastTaskOnList.getText().includes(taskNameToModify)) {
             this.lastTaskOnList.rightClick();
+            componentAction.clickElement(taskModifyOption, timeToWait);
+            componentAction.setValueElement(taskNameTextField, newTaskName, timeToWait);
+            componentAction.clickElement(taskSaveButton, timeToWait);
             browser.pause(5000);
         }
     }
