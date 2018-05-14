@@ -7,34 +7,32 @@ const taskNameTextField = '#agenda_view > div > ul > li.manager.indent_1 > form 
 const optionDeleteTask = 'tr.menu_item_delete:nth-child(13) > td';
 const deleteTaskButtonConfirmation = '#GB_window a.ist_button.ist_button_red';
 const taskList = '#agenda_view';
+const projectOnContent = '#editor a.project_link';
 let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
-let timeToWait = 50000;
+let timeToWait = 30000;
 
 class ContentPage extends Page {
 
     // Getting element of Project Name on Editor.
-    get projectOnEditor() {
-        let elementCSS = '#editor a.project_link';
-        return componentAction.getElement(elementCSS, timeToWait);
+    get projectOnContent() {
+        return componentAction.getElement(projectOnContent, timeToWait);
     }
 
     // Getting String Project Name on Editor.
     get assertProjectOnContent() {
         let assert = '';
-        this.projectOnEditor.elements('span').value.forEach(project => {
+        this.projectOnContent.elements('span').value.forEach(project => {
             assert = project.getText();
         });
         return assert;
     }
 
-    // Getting last project of list
-    get lastTaskOnList() {
-        return componentAction.lastElementOnList(taskList, timeToWait, 3);
-    }
+    // Getting String Project Name on Editor.
+    assertTaskOnContent(task) {
+        let element = componentAction.elementOnList(taskList, timeToWait, task);
+        return task === element.getText;
 
-    get lastTaskOnList2() {
-        return componentAction.lastElementOnList(taskList, timeToWait, 2);
     }
 
     addTask(taskName) {
@@ -48,26 +46,24 @@ class ContentPage extends Page {
         browser.pause(5000);
     }
 
-    modifyTask(taskNameToModify, newTaskName) { // please finish this.
-        browser.waitForVisible('#loading', timeToWait, true);
-        if (this.lastTaskOnList.getText().includes(taskNameToModify)) {
-            this.lastTaskOnList.rightClick();
-            componentAction.clickElement(taskModifyOption, timeToWait);
-            componentAction.setValueElement(taskNameTextField, newTaskName, timeToWait);
-            componentAction.clickElement(taskSaveButton, timeToWait);
-            browser.pause(5000);
-        }
+    modifyTask(taskNameToModify, newTaskName) {
+        componentAction.waitToLoading(timeToWait);
+        let elementToModify = componentAction.elementOnList(taskList, timeToWait, taskNameToModify);
+        componentAction.rightClickElement(elementToModify);
+        componentAction.clickElement(taskModifyOption, timeToWait);
+        componentAction.setValueElement(taskNameTextField, newTaskName, timeToWait);
+        componentAction.clickElement(taskSaveButton, timeToWait);
+        browser.pause(5000);
     }
 
     deleteTask(taskNameToDelete) {
         componentAction.waitToLoading(timeToWait);
-        // Adding new project to delete.
-        if (this.lastTaskOnList.getText().includes(taskNameToDelete)) {
-            this.lastTaskOnList.rightClick();
-            componentAction.clickElement(optionDeleteTask, timeToWait);
-            componentAction.clickElement(deleteTaskButtonConfirmation, timeToWait);
-            browser.pause(5000);
-        }
+        let elementToDelete = componentAction.elementOnList(taskList, timeToWait, taskNameToDelete);
+        componentAction.rightClickElement(elementToDelete);
+        componentAction.clickElement(optionDeleteTask, timeToWait);
+        componentAction.clickElement(deleteTaskButtonConfirmation, timeToWait);
+        browser.pause(5000);
+
     }
 }
 
