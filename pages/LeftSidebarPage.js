@@ -19,7 +19,7 @@ class LeftSidebarPage extends Page {
 
     // This method is to add new project.
     addProject(projectName) {
-        browser.pause(4000);
+        browser.pause(5000);
         componentAction.waitToLoading(timeToWait);
         componentAction.clickElement(projectMenu, timeToWait);
         componentAction.setValueElement(projectNameTextField, projectName, timeToWait)
@@ -31,7 +31,6 @@ class LeftSidebarPage extends Page {
     modifyProject(projectNameToModify, newProjectName) {
         componentAction.waitToLoading(timeToWait);
         // Adding new project to modify.
-        this.addProject(projectNameToModify);
         if (this.lastProjectOnList.getText() === projectNameToModify) {
             this.lastProjectOnList.rightClick();
             componentAction.clickElement(projectModifyOption, timeToWait);
@@ -45,7 +44,6 @@ class LeftSidebarPage extends Page {
     deleteProject(projectNameToDelete) {
         componentAction.waitToLoading(timeToWait);
         // Adding new project to delete.
-        this.addProject(projectNameToDelete);
         if (this.lastProjectOnList.getText().includes(projectNameToDelete)) {
             this.lastProjectOnList.rightClick();
             componentAction.clickElement(projectDeleteOption, timeToWait);

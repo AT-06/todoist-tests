@@ -25,12 +25,14 @@ describe('Acceptance Tests to Project feature', function () {
     });
 
     it('should allow to Modify a project', function () {
+        leftSidebarPage.addProject(projectToAdd);
         leftSidebarPage.modifyProject(projectToAdd, projectToModify);
         // Verify if last project added "Project to Added" has been changed to "Project MODIFIED".
         expect(leftSidebarPage.lastProjectOnList.getText()).to.have.equal(projectToModify)
     });
 
     it('should allow to delete a project', function () {
+        leftSidebarPage.addProject(projectToDelete);
         leftSidebarPage.deleteProject(projectToDelete);
         // Verify if last project added "Project to delete" has been deleted.
         expect(leftSidebarPage.lastProjectOnList.getText()).to.have.not.equal(projectToDelete);
