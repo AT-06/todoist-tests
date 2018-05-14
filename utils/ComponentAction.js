@@ -6,7 +6,6 @@ class ComponentAction {
 
     // Return is a element visible and existing.
     isElementReady(elementCSS, time) {
-        browser.moveToObject(elementCSS);
         let elementReady = browser.waitUntil(function () {
             return browser.isVisible(elementCSS) && browser.isExisting(elementCSS);
         }, time);
@@ -15,7 +14,6 @@ class ComponentAction {
 
     // Return a element.
     getElement(elementCSS, time) {
-        browser.moveToObject(elementCSS);
         if (this.isElementReady(elementCSS, time)) {
             return browser.element(elementCSS);
         }
@@ -23,7 +21,6 @@ class ComponentAction {
 
     // Click to element.
     clickElement(elementCSS, time) {
-        browser.moveToObject(elementCSS);
         if (this.isElementReady(elementCSS, time)) {
             browser.element(elementCSS).click();
         }
@@ -37,7 +34,6 @@ class ComponentAction {
 
     // Set value to TextField element.
     setValueElement(elementCSS, value, time) {
-        browser.moveToObject(elementCSS);
         if (this.isElementReady(elementCSS, time)) {
             browser.element(elementCSS).setValue(value);
         }
