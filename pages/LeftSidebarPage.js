@@ -19,7 +19,6 @@ class LeftSidebarPage extends Page {
 
     // This method is to add new project.
     addProject(projectName) {
-        browser.pause(4000);
         componentAction.waitToLoading(timeToWait);
         componentAction.clickElement(projectMenu, timeToWait);
         componentAction.setValueElement(projectNameTextField, projectName, timeToWait)

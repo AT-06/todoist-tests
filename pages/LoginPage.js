@@ -1,29 +1,12 @@
 let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
+let loginEmail = '#email';
+let loginPassword = '#password';
+let loginSubmit = '#login_form';
 let timeToWait = 30000;
+let currentUserLogin = null;
 
 class LoginPage extends Page {
-    // Getting email element.
-    get email() {
-        let elementCSS = '#email';
-
-        componentAction.getElement(elementCSS, timeToWait);
-        return browser.element(elementCSS);
-    }
-
-    // Getting password element.
-    get password() {
-        let elementCSS = '#password';
-        componentAction.getElement(elementCSS, timeToWait);
-        return browser.element(elementCSS);
-    }
-
-    // Getting submit button element.
-    get submit() {
-        let elementCSS = '#login_form';
-        componentAction.getElement(elementCSS, timeToWait);
-        return browser.element(elementCSS);
-    }
 
     // Opening login page.
     open() {
@@ -32,10 +15,14 @@ class LoginPage extends Page {
 
     // Logging on www.todosit.com website.
     login(email, password) {
+        if(email !== currentUserLogin ){
         this.open();
-        this.email.setValue(email);
-        this.password.setValue(password);
-        this.submit.click();
+        componentAction.setValueElement(loginEmail, email, timeToWait);
+        componentAction.setValueElement(loginPassword, password, timeToWait);
+        componentAction.clickElement(loginSubmit, timeToWait);
+        currentUserLogin = email;
+        }
+
     }
 }
 
