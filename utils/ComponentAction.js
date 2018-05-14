@@ -1,4 +1,6 @@
 const loading = '#loading';
+const introTask = '#GB_window';
+const introTaskButton = '#GB_window img.cmp_small_close';
 
 class ComponentAction {
 
@@ -31,6 +33,10 @@ class ComponentAction {
     // Wait to loading introduction at home.
     waitToLoading(time) {
         browser.waitForExist(loading, time, true);
+        if(browser.isVisible(introTask)){
+            browser.element(introTaskButton).click();
+        }
+        browser.waitForExist(introTask,time,true);
     }
 }
 

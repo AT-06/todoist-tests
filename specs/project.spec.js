@@ -4,7 +4,6 @@ let expect = require('chai').expect;
 let loginPage = require('../pages/LoginPage');
 let leftSidebarPage = require('../pages/LeftSidebarPage');
 let contentPage = require('../pages/ContentPage');
-
 let projectToAdd = 'Project to Added';
 let projectToModify = 'Project MODIFIED';
 let projectToDelete = 'Project to delete';
