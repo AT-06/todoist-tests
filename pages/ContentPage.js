@@ -9,7 +9,7 @@ const deleteTaskButtonConfirmation = '#GB_window a.ist_button.ist_button_red';
 const taskList = '#agenda_view';
 let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
-let timeToWait = 30000;
+let timeToWait = 50000;
 
 class ContentPage extends Page {
 
@@ -40,7 +40,9 @@ class ContentPage extends Page {
     addTask(taskName) {
         browser.pause(4000);
         componentAction.waitToLoading(timeToWait);
-        componentAction.clickElement(addTaskToday, timeToWait);
+        if (browser.isVisible(addTaskToday)) {
+            componentAction.clickElement(addTaskToday, timeToWait);
+        }
         componentAction.setValueElement(takNameTextField, taskName, timeToWait)
         componentAction.clickElement(taskAddSubmit, timeToWait);
         browser.pause(5000);
@@ -48,7 +50,6 @@ class ContentPage extends Page {
 
     modifyTask(taskNameToModify, newTaskName) { // please finish this.
         browser.waitForVisible('#loading', timeToWait, true);
-        this.addTask(taskNameToModify);
         if (this.lastTaskOnList.getText().includes(taskNameToModify)) {
             this.lastTaskOnList.rightClick();
             componentAction.clickElement(taskModifyOption, timeToWait);
@@ -61,7 +62,6 @@ class ContentPage extends Page {
     deleteTask(taskNameToDelete) {
         componentAction.waitToLoading(timeToWait);
         // Adding new project to delete.
-        this.addTask(taskNameToDelete);
         if (this.lastTaskOnList.getText().includes(taskNameToDelete)) {
             this.lastTaskOnList.rightClick();
             componentAction.clickElement(optionDeleteTask, timeToWait);
