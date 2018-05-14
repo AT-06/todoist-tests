@@ -4,15 +4,14 @@ const quickTaskAddButton = '#quick_add_task a.ist_button.ist_button_red.submit_b
 
 let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
-let timeToWait = 30000;
 
 class ToolbarPage extends Page {
     addQuickTask(taskName) {
         browser.pause(4000);
-        componentAction.waitToLoading(timeToWait);
-        componentAction.clickElement(quickTaskAdd, timeToWait);
-        componentAction.setValueElement(quickTaskTextField, taskName, timeToWait)
-        componentAction.clickElement(quickTaskAddButton, timeToWait);
+        componentAction.waitToLoading();
+        componentAction.clickElement(quickTaskAdd);
+        componentAction.setValueElement(quickTaskTextField, taskName);
+        componentAction.clickElement(quickTaskAddButton);
         browser.pause(5000);
     }
 }

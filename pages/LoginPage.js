@@ -5,7 +5,7 @@ let loginPassword = '#password';
 let loginSubmit = '#login_form';
 let userOptions = 'gear_holder';
 let logout = 'td[data-track="navigation|logout"]';
-let timeToWait = 30000;
+
 let currentUserLogin = null;
 
 class LoginPage extends Page {
@@ -22,13 +22,13 @@ class LoginPage extends Page {
                 this.open();
             }
             else { // going to logout
-                componentAction.clickElement(userOptions, timeToWait);
-                componentAction.clickElement(logout, timeToWait);
+                componentAction.clickElement(userOptions);
+                componentAction.clickElement(logout);
                 browser.url('/Users/showLogin');
             }
-            componentAction.setValueElement(loginEmail, email, timeToWait);
-            componentAction.setValueElement(loginPassword, password, timeToWait);
-            componentAction.clickElement(loginSubmit, timeToWait);
+            componentAction.setValueElement(loginEmail, email);
+            componentAction.setValueElement(loginPassword, password);
+            componentAction.clickElement(loginSubmit);
             currentUserLogin = email;
         }
 

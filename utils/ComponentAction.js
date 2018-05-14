@@ -1,27 +1,28 @@
 const loading = '#loading';
 const introTask = '#GB_window';
 const introTaskButton = '#GB_window img.cmp_small_close';
+const timeToWait = 30000;
 
 class ComponentAction {
 
     // Return is a element visible and existing.
-    isElementReady(elementCSS, time) {
+    isElementReady(elementCSS) {
         let elementReady = browser.waitUntil(function () {
             return browser.isVisible(elementCSS) && browser.isExisting(elementCSS);
-        }, time);
+        }, timeToWait);
         return elementReady;
     }
 
     // Return a element.
-    getElement(elementCSS, time) {
-        if (this.isElementReady(elementCSS, time)) {
+    getElement(elementCSS) {
+        if (this.isElementReady(elementCSS, timeToWait)) {
             return browser.element(elementCSS);
         }
     }
 
     // Click to element.
-    clickElement(elementCSS, time) {
-        if (this.isElementReady(elementCSS, time)) {
+    clickElement(elementCSS) {
+        if (this.isElementReady(elementCSS, timeToWait)) {
             browser.element(elementCSS).click();
         }
     }
@@ -33,24 +34,24 @@ class ComponentAction {
     }
 
     // Set value to TextField element.
-    setValueElement(elementCSS, value, time) {
-        if (this.isElementReady(elementCSS, time)) {
+    setValueElement(elementCSS, value) {
+        if (this.isElementReady(elementCSS, timeToWait)) {
             browser.element(elementCSS).setValue(value);
         }
     }
 
     // Return the last element on list.
-    lastElementOnList(elementCSS, time, difference) {
-        let lasElement = this.getElement(elementCSS, time);
+    lastElementOnList(elementCSS, difference) {
+        let lasElement = this.getElement(elementCSS, timeToWait);
         let lastProjectIndex = lasElement.elements('li').value.length - difference;
         return lasElement.elements('li').value[lastProjectIndex];
 
     }
 
     // Return the last element on list.
-    elementOnList(elementCSS, time, elementName) {
+    elementOnList(elementCSS, elementName) {
         let elementToReturn = null;
-        this.getElement(elementCSS, time).elements('span').value.forEach(element => {
+        this.getElement(elementCSS, timeToWait).elements('span').value.forEach(element => {
             if (element.getText().includes(elementName)) {
                 elementToReturn = element;
             }
@@ -59,12 +60,12 @@ class ComponentAction {
     }
 
     // Wait to loading introduction at home.
-    waitToLoading(time) {
-        browser.waitForExist(loading, time, true);
+    waitToLoading() {
+        browser.waitForExist(loading, timeToWait, true);
         if (browser.isVisible(introTask)) {
             browser.element(introTaskButton).click();
         }
-        browser.waitForExist(introTask, time, true);
+        browser.waitForExist(introTask, timeToWait, true);
     }
 
 }
