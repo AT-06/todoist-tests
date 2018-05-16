@@ -30,12 +30,12 @@ class ContentPage extends Page {
     // Getting String Project Name on Editor.
     assertTaskOnContent(task) {
         let element = componentAction.elementOnList(taskList, task);
-        return task === element.getText;
+        return element.getText === task;
 
     }
 
     addTask(taskName) {
-        browser.pause(4000);
+        browser.pause(4500);
         componentAction.waitToLoading();
         if (browser.isVisible(addTaskToday)) {
             componentAction.clickElement(addTaskToday);
