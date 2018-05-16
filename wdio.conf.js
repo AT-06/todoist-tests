@@ -1,5 +1,4 @@
 exports.config = {
-    
     //
     // ==================
     // Specify Test Files
@@ -32,7 +31,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same specs should run tests.
     //
-    maxInstances: 1,
+    maxInstances: 5,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -45,7 +44,11 @@ exports.config = {
         maxInstances: 5,
         //
         browserName: 'chrome'
+    }, {
+        maxInstances: 5,
+        browserName: 'firefox'
     }],
+
     //
     // ===================
     // Test Configurations
@@ -170,7 +173,7 @@ exports.config = {
      */
     // beforeCommand: function (commandName, args) {
     // },
-    
+
     /**
      * Hook that gets executed before the suite starts
      * @param {Object} suite suite details
@@ -207,7 +210,7 @@ exports.config = {
      */
     // afterSuite: function (suite) {
     // },
-    
+
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {String} commandName hook command name
@@ -243,3 +246,4 @@ exports.config = {
     // onComplete: function(exitCode, config, capabilities) {
     // }
 }
+
