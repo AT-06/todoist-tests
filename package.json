@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "wdio"
+    "test": "wdio",
+    "firefox": "wdio wdio.firefox.conf.js",
+    "chrome": "wdio wdio.conf.js",
+    "parallel": "wdio wdio.parallel.conf.js"
   },
   "keywords": [],
   "author": "",
