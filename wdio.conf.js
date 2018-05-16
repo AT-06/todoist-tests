@@ -1,5 +1,4 @@
 exports.config = {
-    
     //
     // ==================
     // Specify Test Files
@@ -46,6 +45,7 @@ exports.config = {
         //
         browserName: 'chrome'
     }],
+
     //
     // ===================
     // Test Configurations
@@ -170,7 +170,7 @@ exports.config = {
      */
     // beforeCommand: function (commandName, args) {
     // },
-    
+
     /**
      * Hook that gets executed before the suite starts
      * @param {Object} suite suite details
@@ -207,7 +207,7 @@ exports.config = {
      */
     // afterSuite: function (suite) {
     // },
-    
+
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {String} commandName hook command name
@@ -243,3 +243,4 @@ exports.config = {
     // onComplete: function(exitCode, config, capabilities) {
     // }
 }
+
