@@ -16,6 +16,7 @@
     "chai": "^4.1.2",
     "wdio-docker-service": "^1.2.0",
     "wdio-mocha-framework": "^0.5.13",
+    "wdio-sauce-service": "^0.4.8",
     "webdriverio": "^4.12.0"
   },
   "dependencies": {
