@@ -16,6 +16,7 @@ describe('Acceptance Tests for Task feature', function () {
 
     it('should allow to add a new task', function () {
         // Adding a task with 'Task added' name.
+        contentPage.closeTimeZoneAlert();
         contentPage.addTask(taskNameAdded);
         expect(contentPage.assertTaskOnContent(taskNameAdded));
     });

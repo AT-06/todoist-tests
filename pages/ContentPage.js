@@ -8,6 +8,8 @@ const optionDeleteTask = 'tr.menu_item_delete:nth-child(13) > td';
 const deleteTaskButtonConfirmation = '#GB_window a.ist_button.ist_button_red';
 const taskList = '#agenda_view';
 const projectOnContent = '#editor a.project_link';
+const timeZoneAlert = '#GB_window';
+const closeTimeZoneAlertLink = 'a.timezone_link:nth-child(4)';
 let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
 
@@ -63,6 +65,12 @@ class ContentPage extends Page {
         componentAction.clickElement(deleteTaskButtonConfirmation);
         browser.pause(5000);
 
+    }
+
+    closeTimeZoneAlert(){
+        if (browser.isVisible(timeZoneAlert)){
+            componentAction.clickElement(closeTimeZoneAlertLink);
+        }
     }
 }
 

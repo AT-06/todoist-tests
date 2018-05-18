@@ -16,6 +16,7 @@ describe('Acceptance Tests to Project feature', function () {
     });
 
     it('should allow to add new project', function () {
+        contentPage.closeTimeZoneAlert();
         leftSidebarPage.addProject(projectToAdd);
 
         // Verify if last Project added name is equal to "projectToAddName".
