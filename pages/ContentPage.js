@@ -37,7 +37,6 @@ class ContentPage extends Page {
     }
 
     addTask(taskName) {
-        browser.pause(4500);
         componentAction.waitToLoading();
         if (browser.isVisible(addTaskToday)) {
             componentAction.clickElement(addTaskToday);

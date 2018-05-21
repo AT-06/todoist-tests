@@ -20,7 +20,7 @@ class LeftSidebarPage extends Page {
     addProject(projectName) {
         browser.pause(5000);
         componentAction.waitToLoading();
-        if(browser.isMobile){
+        if (this.isMobile()) {
             componentAction.clickElement(menuHideButton);
         }
         componentAction.clickElement(projectMenu);
@@ -32,9 +32,9 @@ class LeftSidebarPage extends Page {
     // This method is to modify one project.
     modifyProject(projectNameToModify, newProjectName) {
         componentAction.waitToLoading();
-        if(browser.isMobile){
+        if (this.isMobile()) {
             componentAction.clickElement(menuHideButton);
-      //  }
+        }
         // Adding new project to modify.
         if (this.lastProjectOnList.getText() === projectNameToModify) {
             this.lastProjectOnList.rightClick();
@@ -48,15 +48,25 @@ class LeftSidebarPage extends Page {
     // This method is to delete a project.
     deleteProject(projectNameToDelete) {
         componentAction.waitToLoading();
-        if(browser.isMobile){
+        if (this.isMobile()) {
             componentAction.clickElement(menuHideButton);
         }
         // Adding new project to delete.
         if (this.lastProjectOnList.getText().includes(projectNameToDelete)) {
             this.lastProjectOnList.rightClick();
-            componentAction.clickElement(projectDeleteOption, );
+            componentAction.clickElement(projectDeleteOption,);
             componentAction.clickElement(projectDeleteConfirmation);
-            browser.pause(5000);
+          //  browser.pause(5000);
+        }
+    }
+
+    isMobile() {
+        var width = browser.getViewportSize('width');
+        if (width < 640) {
+            return true;
+        }
+        else {
+            return false;
         }
     }
 }
