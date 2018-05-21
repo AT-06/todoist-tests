@@ -8,7 +8,8 @@
     "firefox": "wdio wdio.firefox.conf.js",
     "chrome": "wdio wdio.conf.js",
     "parallel": "wdio wdio.parallel.conf.js",
-    "mobile": "wdio wdio.mobile.conf.js"
+    "mobile": "wdio wdio.mobile.conf.js",
+    "saucelabs": "wdio wdio.saucelabs.conf.js"
   },
   "keywords": [],
   "author": "",
