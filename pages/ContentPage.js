@@ -38,6 +38,7 @@ class ContentPage extends Page {
 
     addTask(taskName) {
         componentAction.waitToLoading();
+        contentPage.closeTimeZoneAlert();
         if (browser.isVisible(addTaskToday)) {
             componentAction.clickElement(addTaskToday);
         }
