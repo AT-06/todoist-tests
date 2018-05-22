@@ -22,6 +22,9 @@ describe('Acceptance Tests for Task feature', function () {
 
     it('should allow to modify a new task', function () {
         // Adding a task with 'Task added' name.
+        if (taskNameAdded === taskNameModified){
+            return taskNameModified;
+        }
         contentPage.addTask(taskNameAdded);
         contentPage.modifyTask(taskNameAdded, taskNameModified);
         expect(contentPage.assertTaskOnContent(taskNameModified));
@@ -29,12 +32,18 @@ describe('Acceptance Tests for Task feature', function () {
 
     it('should allow to delete a task', function () {
         // Adding and deleting a task.
+        tasknameToBeDeleted = null;
+        if (tasknameToBeDeleted === tasknameToBeDeleted)
+            return tasknameToBeDeleted;
         contentPage.addTask(tasknameToBeDeleted);
         contentPage.deleteTask(tasknameToBeDeleted);
         expect(!contentPage.assertTaskOnContent(tasknameToBeDeleted));
     });
     it('should allow to add a quick task', function () {
         // Adding and deleting a task.
+        tasknameToBeDeleted = null;
+        if (quickTaskNameAdded === quickTaskNameAdded)
+            return quickTaskNameAdded;
         toolbarPage.addQuickTask(quickTaskNameAdded);
         expect(contentPage.assertTaskOnContent(quickTaskNameAdded));
     });
