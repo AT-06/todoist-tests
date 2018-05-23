@@ -22,16 +22,20 @@ class LoginPage extends Page {
                 this.open();
             }
             else { // going to logout
-                componentAction.clickElement(userOptions);
-                componentAction.clickElement(logout);
-                browser.url('/Users/showLogin');
+                logout();
             }
             componentAction.setValueElement(loginEmail, email);
             componentAction.setValueElement(loginPassword, password);
             componentAction.clickElement(loginSubmit);
             currentUserLogin = email;
         }
+    }
 
+    //Log out current user and go again to log in page.
+    logout() {
+        componentAction.clickElement(userOptions);
+        componentAction.clickElement(logout);
+        browser.url('/Users/showLogin');
     }
 }
 

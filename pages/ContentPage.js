@@ -10,6 +10,9 @@ const taskList = '#agenda_view';
 const projectOnContent = '#editor a.project_link';
 const timeZoneAlert = '#GB_window';
 const closeTimeZoneAlertLink = 'a.timezone_link:nth-child(4)';
+const closeTimeZoneAlertButton = '.close span';
+const priority = '.cmp_priority4.form_action_icon';
+const flag = '.ist_menu.priority_menu .cmp_priority1';
 let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
 
@@ -38,12 +41,14 @@ class ContentPage extends Page {
 
     addTask(taskName) {
         componentAction.waitToLoading();
-        contentPage.closeTimeZoneAlert();
+        //contentPage.closeTimeZoneAlert();
         if (browser.isVisible(addTaskToday)) {
             componentAction.clickElement(addTaskToday);
+            componentAction.setValueElement(takNameTextField, taskName);
+            componentAction.clickElement(priority);
+            componentAction.clickElement(flag);
+            componentAction.clickElement(taskAddSubmit);
         }
-        componentAction.setValueElement(takNameTextField, taskName)
-        componentAction.clickElement(taskAddSubmit);
         browser.pause(5000);
     }
 
@@ -69,7 +74,7 @@ class ContentPage extends Page {
 
     closeTimeZoneAlert(){
         if (browser.isVisible(timeZoneAlert)){
-            componentAction.clickElement(closeTimeZoneAlertLink);
+            componentAction.clickElement(closeTimeZoneAlertButton);//////
         }
     }
 }

@@ -6,7 +6,7 @@ const timeToWait = 30000;
 class ComponentAction {
 
     // Return is a element visible and existing.
-    isElementReady(elementCSS) {
+    static isElementReady(elementCSS) {
         let elementReady = browser.waitUntil(function () {
             return browser.isVisible(elementCSS) && browser.isExisting(elementCSS);
         }, timeToWait);
@@ -34,8 +34,8 @@ class ComponentAction {
     }
 
     // Set value to TextField element.
-    setValueElement(elementCSS, value) {
-        if (this.isElementReady(elementCSS, timeToWait)) {
+    static setValueElement(elementCSS, value) {
+        if (isElementReady(elementCSS, timeToWait)) {
             browser.element(elementCSS).setValue(value);
         }
     }
@@ -70,4 +70,4 @@ class ComponentAction {
 
 }
 
-module.exports = new ComponentAction();
+module.exports = ComponentAction;

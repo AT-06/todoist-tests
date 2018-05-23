@@ -19,7 +19,7 @@ describe('Acceptance Tests for Task feature', function () {
         contentPage.addTask(taskNameAdded);
         expect(contentPage.assertTaskOnContent(taskNameAdded));
     });
-
+/*
     it('should allow to modify a new task', function () {
         // Adding a task with 'Task added' name.
         if (taskNameAdded === taskNameModified){
@@ -47,5 +47,5 @@ describe('Acceptance Tests for Task feature', function () {
         toolbarPage.addQuickTask(quickTaskNameAdded);
         expect(contentPage.assertTaskOnContent(quickTaskNameAdded));
     });
-
+    */
 });
