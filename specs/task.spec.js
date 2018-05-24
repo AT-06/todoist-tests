@@ -36,6 +36,7 @@ describe('Acceptance Tests for Task feature', function () {
         contentPage.deleteTask(tasknameToBeDeleted);
         expect(!contentPage.assertTaskOnContent(tasknameToBeDeleted));
     });
+
     it('should allow to add a quick task', function () {
         // Adding and deleting a task.
         toolbarPage.addQuickTask(quickTaskNameAdded);

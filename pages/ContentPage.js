@@ -33,22 +33,21 @@ class ContentPage {
 
     // Getting String Project Name on Editor.
     assertTaskOnContent(task) {
-        let element = componentAction.elementOnList(taskList, task);
-        return element.getText === task;
-
+        let element = componentAction.elementOnList(this.taskList, task);
+        return (element != null) ? (element.getText === task) : false;
     }
 
     addTask(taskName) {
         componentAction.waitToLoading();
         ContentPage.closeTimeZoneAlert();
-        componentAction.moveToComponent(this.addTaskToday)
-        if (browser.isVisible(this.addTaskToday)) {
+        if (!browser.isVisible(this.taskAddSubmit)) {
+            componentAction.moveToComponent(this.addTaskToday);
             componentAction.clickElement(this.addTaskToday);
-            componentAction.setValueElement(this.takNameTextField, taskName);
-            componentAction.clickElement(this.priority);
-            componentAction.clickElement(this.flag);
-            componentAction.clickElement(this.taskAddSubmit);
         }
+        componentAction.setValueElement(this.takNameTextField, taskName);
+        componentAction.clickElement(this.priority);
+        componentAction.clickElement(this.flag);
+        componentAction.clickElement(this.taskAddSubmit);
         browser.pause(5000);
     }
 
@@ -74,7 +73,7 @@ class ContentPage {
 
     static closeTimeZoneAlert(){
         if (browser.isVisible(this.timeZoneAlert)){
-            componentAction.clickElement(this.closeTimeZoneAlertButton);//////
+            componentAction.clickElement(this.closeTimeZoneAlertButton);/**/
         }
     }
 }
