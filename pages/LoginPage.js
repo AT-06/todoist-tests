@@ -1,18 +1,16 @@
-let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
 let loginEmail = '#email';
 let loginPassword = '#password';
 let loginSubmit = '#login_form';
 let userOptions = 'gear_holder';
 let logout = 'td[data-track="navigation|logout"]';
-
 let currentUserLogin = null;
 
-class LoginPage extends Page {
+class LoginPage {
 
     // Opening login page.
     open() {
-        super.open('/Users/showLogin');
+        browser.url('/Users/showLogin');
     }
 
     // Logging on www.todosit.com website.
@@ -24,6 +22,7 @@ class LoginPage extends Page {
             else { // going to logout
                 logout();
             }
+
             componentAction.setValueElement(loginEmail, email);
             componentAction.setValueElement(loginPassword, password);
             componentAction.clickElement(loginSubmit);

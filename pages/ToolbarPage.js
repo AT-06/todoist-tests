@@ -1,17 +1,17 @@
-const quickTaskAdd = '#quick_add_task_holder';
-const quickTaskTextField = '#quick_add_task div.richtext_editor.sel_richtext_editor';
-const quickTaskAddButton = '#quick_add_task a.ist_button.ist_button_red.submit_btn';
-
-let Page = require('./Page');
 let componentAction = require('../utils/ComponentAction');
 
-class ToolbarPage extends Page {
+class ToolbarPage {
+    constructor() {
+        this.quickTaskAdd = '#quick_add_task_holder';
+        this.quickTaskTextField = '#quick_add_task div.richtext_editor.sel_richtext_editor';
+        this.quickTaskAddButton = '#quick_add_task a.ist_button.ist_button_red.submit_btn';
+    }
     addQuickTask(taskName) {
         browser.pause(4000);
         componentAction.waitToLoading();
-        componentAction.clickElement(quickTaskAdd);
-        componentAction.setValueElement(quickTaskTextField, taskName);
-        componentAction.clickElement(quickTaskAddButton);
+        componentAction.clickElement(this.quickTaskAdd);
+        componentAction.setValueElement(this.quickTaskTextField, taskName);
+        componentAction.clickElement(this.quickTaskAddButton);
         browser.pause(5000);
     }
 }
