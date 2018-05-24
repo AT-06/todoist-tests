@@ -4,7 +4,7 @@ let expect = require('chai').expect;
 let loginPage = require('../pages/LoginPage');
 let leftSidebarPage = require('../pages/LeftSidebarPage');
 let contentPage = require('../pages/ContentPage');
-let projectToAdd = 'Project to Added';
+let projectToAdd = 'Test Project';
 let projectToModify = 'Project MODIFIED';
 let projectToDelete = 'Project to delete';
 
@@ -13,10 +13,15 @@ describe('Acceptance Tests to Project feature', function () {
     beforeEach(function () {
         // Login on website with credentials.
         loginPage.login(config.acc1_email, config.acc1_password);
+        leftSidebarPage.addProject(projectToAdd);
     });
 
+    afterEach(function () {
+        leftSidebarPage.deleteProject(projectToAdd);
+    })
+
     it('should allow to add new project', function () {
-        leftSidebarPage.addProject(projectToAdd);
+        //leftSidebarPage.addProject(projectToAdd);
         // Verify if last Project added name is equal to "projectToAddName".
         expect(leftSidebarPage.lastProjectOnList.getText()).to.have.equal(projectToAdd);
         // Verify if last project name as shown on editor.
@@ -24,17 +29,24 @@ describe('Acceptance Tests to Project feature', function () {
     });
 
     it('should allow to Modify a project', function () {
-        leftSidebarPage.addProject(projectToAdd);
-        leftSidebarPage.modifyProject(projectToAdd, projectToModify);
+        //leftSidebarPage.addProject(projectToAdd);
+        leftSidebarPage.modifyProject(projectToAdd, projectToAdd);
         // Verify if last project added "Project to Added" has been changed to "Project MODIFIED".
-        expect(leftSidebarPage.lastProjectOnList.getText()).to.have.equal(projectToModify)
+        expect(leftSidebarPage.lastProjectOnList.getText()).to.have.equal(projectToAdd)
+    });
+});
+
+describe('Acceptance Tests to Project feature delete', function () {
+    beforeEach(function () {
+        // Login on website with credentials.
+        loginPage.login(config.acc1_email, config.acc1_password);
+        leftSidebarPage.addProject(projectToAdd);
     });
 
     it('should allow to delete a project', function () {
-        leftSidebarPage.addProject(projectToDelete);
-        leftSidebarPage.deleteProject(projectToDelete);
+        //leftSidebarPage.addProject(projectToAdd);
+        leftSidebarPage.deleteProject(projectToAdd);
         // Verify if last project added "Project to delete" has been deleted.
-        expect(leftSidebarPage.lastProjectOnList.getText()).to.have.not.equal(projectToDelete);
+        expect(leftSidebarPage.lastProjectOnList.getText()).to.have.not.equal(projectToAdd);
     });
-
 });
