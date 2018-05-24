@@ -8,10 +8,10 @@ class ComponentAction {
 
     // Return is a element visible and existing.
     static isElementReady(elementCSS) {
-        let elementReady = browser.waitUntil(function () {
+        return browser.waitUntil(function () {
             return browser.isVisible(elementCSS) && browser.isExisting(elementCSS);
         }, timeToWait);
-        return elementReady;
+        //return elementReady;
     }
 
     // Return a element.
