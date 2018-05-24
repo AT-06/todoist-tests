@@ -36,4 +36,5 @@ describe('Acceptance Tests to Project feature', function () {
         // Verify if last project added "Project to delete" has been deleted.
         expect(leftSidebarPage.lastProjectOnList.getText()).to.have.not.equal(projectToDelete);
     });
+
 });
