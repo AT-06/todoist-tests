@@ -9,9 +9,10 @@ class ToolbarPage {
     addQuickTask(taskName) {
         browser.pause(4000);
         componentAction.waitToLoading();
-        componentAction.clickElement(this.quickTaskAdd);
+        componentAction.selectFillAndSummit(this.quickTaskAdd, this.quickTaskTextField, this.quickTaskAddButton, taskName);
+        /*componentAction.clickElement(this.quickTaskAdd);
         componentAction.setValueElement(this.quickTaskTextField, taskName);
-        componentAction.clickElement(this.quickTaskAddButton);
+        componentAction.clickElement(this.quickTaskAddButton);*/
         browser.pause(5000);
     }
 }

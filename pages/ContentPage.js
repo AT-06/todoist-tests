@@ -2,14 +2,14 @@ let componentAction = require('../utils/ComponentAction');
 
 class ContentPage {
     constructor() {
-        this.takNameTextField = '#agenda_view  td.text_box_holder div';
-        this.addTaskToday = '#editor a.action';
+        this.taskNameTextField = '.richtext_editor.sel_richtext_editor'; //'#agenda_view  td.text_box_holder div';
+        this.addTaskToday = '.agenda_add_task , .pe_controller .action';//'#editor a.action';
         this.taskAddSubmit = '#editor a.ist_button span';
         this.taskModifyOption = 'div:nth-child(21) > table > tbody > tr.menu_item_edit > td';
         this.taskSaveButton = ' a.ist_button.ist_button_red.submit_btn';
-        this.taskNameTextField = '#agenda_view > div > ul > li.manager.indent_1 > form > table:nth-child(1) > tbody > tr > td > table > tbody > tr > td.text_box_holder > div';
-        this.optionDeleteTask = 'tr.menu_item_delete:nth-child(13) > td';
-        this.taskList = '#agenda_view';
+        this.optionDeleteTask = 'tr.menu_item_delete:nth-child(13)';
+        this.optionDeleteTaskFromProject = '.sel_delete_task.menu_item_delete';
+        this.taskList = '#agenda_view , .current_editor';
         this.projectOnContent = '#editor a.project_link';
         ContentPage.timeZoneAlert = '#GB_window';
         ContentPage.closeTimeZoneAlertLink = 'a.timezone_link:nth-child(4)';
@@ -44,10 +44,12 @@ class ContentPage {
             componentAction.moveToComponent(this.addTaskToday);
             componentAction.clickElement(this.addTaskToday);
         }
-        componentAction.setValueElement(this.takNameTextField, taskName);
-        componentAction.clickElement(this.priority);
+        componentAction.setValueElement(this.taskNameTextField, taskName);
+        let locators = [this.priority, this.flag, this.taskAddSubmit];
+        componentAction.clickManyElements(locators);
+        /*componentAction.clickElement(this.priority);
         componentAction.clickElement(this.flag);
-        componentAction.clickElement(this.taskAddSubmit);
+        componentAction.clickElement(this.taskAddSubmit);*/
         browser.pause(5000);
     }
 
@@ -55,20 +57,24 @@ class ContentPage {
         componentAction.waitToLoading();
         let elementToModify = componentAction.elementOnList(this.taskList, taskNameToModify);
         componentAction.rightClickElement(elementToModify);
-        componentAction.clickElement(this.taskModifyOption, );
+        componentAction.selectFillAndSummit(this.taskModifyOption, this.taskNameTextField, this.taskSaveButton, newTaskName);
+        /*componentAction.clickElement(this.taskModifyOption, );
         componentAction.setValueElement(this.taskNameTextField, newTaskName);
-        componentAction.clickElement(this.taskSaveButton);
+        componentAction.clickElement(this.taskSaveButton);*/
         browser.pause(5000);
     }
 
     deleteTask(taskNameToDelete) {
         componentAction.waitToLoading();
         let elementToDelete = componentAction.elementOnList(this.taskList, taskNameToDelete);
-        componentAction.rightClickElement(elementToDelete);
-        componentAction.clickElement(this.optionDeleteTask);
+        componentAction.rightClickElement(elementToDelete)
+        if (browser.isVisible(this.optionDeleteTask)) {
+            componentAction.clickElement(this.optionDeleteTask);
+        } else {
+            componentAction.clickElement(this.optionDeleteTaskFromProject);
+        }
         componentAction.clickModalDeleteButton();
         browser.pause(5000);
-
     }
 
     static closeTimeZoneAlert(){

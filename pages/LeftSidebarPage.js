@@ -27,9 +27,10 @@ class LeftSidebarPage {
             componentAction.clickElement(this.menuHideButton);
         }
         componentAction.moveToComponent(this.leftMenu);
-        componentAction.clickElement(this.projectMenu);
+        componentAction.selectFillAndSummit(this.projectMenu, this.projectNameTextField, this.projectAddSubmit, projectName);
+        /*componentAction.clickElement(this.projectMenu);
         componentAction.setValueElement(this.projectNameTextField, projectName);
-        componentAction.clickElement(this.projectAddSubmit);
+        componentAction.clickElement(this.projectAddSubmit);*/
         browser.pause(5000);
     }
 
@@ -42,9 +43,10 @@ class LeftSidebarPage {
         // Adding new project to modify.
         if (this.lastProjectOnList.getText() === projectNameToModify) {
             this.lastProjectOnList.rightClick();
-            componentAction.clickElement(this.projectModifyOption);
+            componentAction.selectFillAndSummit(this.projectModifyOption, this.projectNameTextField, this.projectSaveButton, newProjectName);
+            /*componentAction.clickElement(this.projectModifyOption);
             componentAction.setValueElement(this.projectNameTextField, newProjectName);
-            componentAction.clickElement(this.projectSaveButton);
+            componentAction.clickElement(this.projectSaveButton);*/
             browser.pause(5000);
         }
     }

@@ -8,11 +8,9 @@ class ComponentAction {
 
     // Return is a element visible and existing.
     static isElementReady(elementCSS) {
-        //browser.waitUntil();
         browser.waitUntil(function () {
             return browser.isVisible(elementCSS) && browser.isExisting(elementCSS);
         }, timeToWait);
-        //return elementReady;
     }
 
     // Return a element.
@@ -73,8 +71,19 @@ class ComponentAction {
     }
 
     static moveToComponent(elementCss) {
-        if (this.isElementReady(elementCss)) {
-            browser.moveToObject(elementCss);
+        this.isElementReady(elementCss, timeToWait);
+        browser.moveToObject(elementCss);
+    }
+
+    static selectFillAndSummit(locator1, locator2, locator3, value) {
+        componentAction.clickElement(locator1, );
+        componentAction.setValueElement(locator2, value);
+        componentAction.clickElement(locator3);
+    }
+
+    static clickManyElements(locators) {
+        for (i = 0; i < locators.length; i++) {
+            clickElement(params[i]);
         }
     }
 }
