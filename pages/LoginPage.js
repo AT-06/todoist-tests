@@ -1,12 +1,15 @@
 let componentAction = require('../utils/ComponentAction');
-let loginEmail = '#email';
-let loginPassword = '#password';
-let loginSubmit = '#login_form';
-let userOptions = 'gear_holder';
-let logout = 'td[data-track="navigation|logout"]';
 let currentUserLogin = null;
 
 class LoginPage {
+
+    constructor() {
+        this.loginEmail = '#email';
+        this.loginPassword = '#password';
+        this.loginSubmit = '#login_form';
+        this.userOptions = 'gear_holder';
+        this.logout = 'td[data-track="navigation|logout"]';
+    }
 
     // Opening login page.
     open() {
@@ -19,21 +22,20 @@ class LoginPage {
             if (currentUserLogin === null) {
                 this.open();
             }
-            else { // going to logout
-                logout();
+            else { // going to ogOutl
+                logOut();
             }
-
-            componentAction.setValueElement(loginEmail, email);
-            componentAction.setValueElement(loginPassword, password);
-            componentAction.clickElement(loginSubmit);
+            componentAction.setValueElement(this.loginEmail, email);
+            componentAction.setValueElement(this.loginPassword, password);
+            componentAction.clickElement(this.loginSubmit);
             currentUserLogin = email;
         }
     }
 
     //Log out current user and go again to log in page.
-    logout() {
-        componentAction.clickElement(userOptions);
-        componentAction.clickElement(logout);
+    logOut() {
+        componentAction.clickElement(this.userOptions);
+        componentAction.clickElement(this.logout);
         browser.url('/Users/showLogin');
     }
 }
