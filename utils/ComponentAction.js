@@ -22,7 +22,7 @@ class ComponentAction {
     // Click to element.
     static clickElement(elementCSS) {
         this.isElementReady(elementCSS, timeToWait);
-        browser.element(elementCSS).click();
+        browser.element(elementCSS).click();+
     }
 
     // Right click to element.
@@ -73,18 +73,6 @@ class ComponentAction {
     static moveToComponent(elementCss) {
         this.isElementReady(elementCss, timeToWait);
         browser.moveToObject(elementCss);
-    }
-
-    static selectFillAndSummit(locator1, locator2, locator3, value) {
-        componentAction.clickElement(locator1, );
-        componentAction.setValueElement(locator2, value);
-        componentAction.clickElement(locator3);
-    }
-
-    static clickManyElements(locators) {
-        for (i = 0; i < locators.length; i++) {
-            clickElement(params[i]);
-        }
     }
 }
 

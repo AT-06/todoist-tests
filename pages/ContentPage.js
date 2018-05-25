@@ -37,20 +37,34 @@ class ContentPage {
         return (element != null) ? (element.getText === task) : false;
     }
 
-    addTask(taskName) {
+    clickAddTaskLink() {
         componentAction.waitToLoading();
         ContentPage.closeTimeZoneAlert();
         if (!browser.isVisible(this.taskAddSubmit)) {
             componentAction.moveToComponent(this.addTaskToday);
             componentAction.clickElement(this.addTaskToday);
         }
+    }
+
+    setTaskNameTextField(taskName) {
         componentAction.setValueElement(this.taskNameTextField, taskName);
-        let locators = [this.priority, this.flag, this.taskAddSubmit];
-        componentAction.clickManyElements(locators);
-        /*componentAction.clickElement(this.priority);
+    }
+
+    selectPriorityFlag(priority) {
         componentAction.clickElement(this.flag);
-        componentAction.clickElement(this.taskAddSubmit);*/
+        componentAction.clickElement(this.priority);
+    }
+
+    clickAddButton() {
+        componentAction.clickElement(this.taskAddSubmit);
         browser.pause(5000);
+    }
+
+    addTask(taskName, priority) {
+        this.clickAddTaskLink();
+        this.setTaskNameTextField(taskName);
+        this.selectPriorityFlag(priority);
+        this.clickAddButton();
     }
 
     modifyTask(taskNameToModify, newTaskName) {
@@ -58,9 +72,9 @@ class ContentPage {
         let elementToModify = componentAction.elementOnList(this.taskList, taskNameToModify);
         componentAction.rightClickElement(elementToModify);
         componentAction.selectFillAndSummit(this.taskModifyOption, this.taskNameTextField, this.taskSaveButton, newTaskName);
-        /*componentAction.clickElement(this.taskModifyOption, );
+        componentAction.clickElement(this.taskModifyOption, );
         componentAction.setValueElement(this.taskNameTextField, newTaskName);
-        componentAction.clickElement(this.taskSaveButton);*/
+        componentAction.clickElement(this.taskSaveButton);
         browser.pause(5000);
     }
 
