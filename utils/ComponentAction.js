@@ -8,7 +8,8 @@ class ComponentAction {
 
     // Return is a element visible and existing.
     static isElementReady(elementCSS) {
-        return browser.waitUntil(function () {
+        //browser.waitUntil();
+        browser.waitUntil(function () {
             return browser.isVisible(elementCSS) && browser.isExisting(elementCSS);
         }, timeToWait);
         //return elementReady;
@@ -16,16 +17,14 @@ class ComponentAction {
 
     // Return a element.
     static getElement(elementCSS) {
-        if (this.isElementReady(elementCSS, timeToWait)) {
-            return browser.element(elementCSS);
-        }
+        this.isElementReady(elementCSS, timeToWait);
+        return browser.element(elementCSS);
     }
 
     // Click to element.
     static clickElement(elementCSS) {
-        if (this.isElementReady(elementCSS, timeToWait)) {
-            browser.element(elementCSS).click();
-        }
+        this.isElementReady(elementCSS, timeToWait);
+        browser.element(elementCSS).click();
     }
 
     // Right click to element.
@@ -36,9 +35,8 @@ class ComponentAction {
 
     // Set value to TextField element.
     static setValueElement(elementCSS, value) {
-        if (this.isElementReady(elementCSS, timeToWait)) {
-            browser.element(elementCSS).setValue(value);
-        }
+        this.isElementReady(elementCSS, timeToWait);
+        browser.element(elementCSS).setValue(value);
     }
 
     // Return the last element on list.
