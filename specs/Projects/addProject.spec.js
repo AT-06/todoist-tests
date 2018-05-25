@@ -1,12 +1,11 @@
-// project.spec.js
-let config = require('../config.json');
+// addProject.spec.js
+let config = require('../../config.json');
 let expect = require('chai').expect;
-let loginPage = require('../pages/LoginPage');
-let leftSidebarPage = require('../pages/LeftSidebarPage');
-let contentPage = require('../pages/ContentPage');
+let loginPage = require('../../pages/LoginPage');
+let leftSidebarPage = require('../../pages/LeftSidebarPage');
+let contentPage = require('../../pages/ContentPage');
 let projectToAdd = 'Test Project';
 let projectToModify = 'Project MODIFIED';
-let projectToDelete = 'Project to delete';
 
 
 describe('Acceptance Tests to Project feature', function () {
@@ -18,7 +17,7 @@ describe('Acceptance Tests to Project feature', function () {
 
     afterEach(function () {
         leftSidebarPage.deleteProject(projectToAdd);
-    })
+    });
 
     it('should allow to add new project', function () {
         //leftSidebarPage.addProject(projectToAdd);
@@ -33,21 +32,5 @@ describe('Acceptance Tests to Project feature', function () {
         leftSidebarPage.modifyProject(projectToAdd, projectToAdd);
         // Verify if last project added "Project to Added" has been changed to "Project MODIFIED".
         expect(leftSidebarPage.lastProjectOnList.getText()).to.have.equal(projectToAdd)
-    });
-});
-
-describe('Acceptance Tests to Project feature delete', function () {
-    beforeEach(function () {
-        // Login on website with credentials.
-        loginPage.login(config.acc1_email, config.acc1_password);
-        leftSidebarPage.addProject(projectToAdd);
-    });
-
-    it('should allow to delete a project', function () {
-        //leftSidebarPage.addProject(projectToAdd);
-        leftSidebarPage.deleteProject(projectToAdd);
-        // Verify if last project added "Project to delete" has been deleted.
-        expect(leftSidebarPage.lastProjectOnList.getText()).to.have.not.equal(projectToAdd);
-
     });
 });
