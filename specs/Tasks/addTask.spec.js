@@ -53,3 +53,24 @@ describe('Acceptance Tests for Task feature, add tasks to projects', function ()
         expect(contentPage.assertTaskOnContent(taskNameAddedProject));
     });
 });
+
+describe('Acceptance Tests for Task feature, add tasks to existing project', function () {
+    //Login application.
+    beforeEach(function () {
+        loginPage.login(config.acc2_email, config.acc2_password);
+        //leftSidebarPage.addProject(projectForTasks);
+    });
+
+    //Delete task, post condition.
+    afterEach(function () {
+        contentPage.deleteTask(taskNameAdded);
+        //leftSidebarPage.deleteProject(projectForTasks);
+    });
+
+    it('should allow to add a new task and choose a created project to add', function () {
+        // Adding a task with 'Task added' name.
+        contentPage.addTaskToExistingProject(taskNameAdded, projectForTasks, taskPriority);
+        expect(leftSidebarPage.assertTaskInProject(taskNameAdded, projectForTasks));
+    });
+
+});
