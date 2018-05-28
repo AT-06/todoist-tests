@@ -11,7 +11,7 @@ class ToolbarPage {
         componentAction.waitToLoading();
         componentAction.selectFillAndSummit(this.quickTaskAdd, this.quickTaskTextField, this.quickTaskAddButton, taskName);
         componentAction.clickElement(this.quickTaskAdd);
-        componentAction.setValueElement(this.quickTaskTextField, taskName);
+        componentAction.setElementValue(this.quickTaskTextField, taskName);
         componentAction.clickElement(this.quickTaskAddButton);
         browser.pause(5000);
     }

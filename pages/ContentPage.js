@@ -47,7 +47,7 @@ class ContentPage {
     }
 
     setTaskNameTextField(taskName) {
-        componentAction.setValueElement(this.taskNameTextField, taskName);
+        componentAction.setElementValue(this.taskNameTextField, taskName);
     }
 
     selectPriorityFlag(priority) {
@@ -73,7 +73,7 @@ class ContentPage {
         componentAction.rightClickElement(elementToModify);
         componentAction.selectFillAndSummit(this.taskModifyOption, this.taskNameTextField, this.taskSaveButton, newTaskName);
         componentAction.clickElement(this.taskModifyOption, );
-        componentAction.setValueElement(this.taskNameTextField, newTaskName);
+        componentAction.setElementValue(this.taskNameTextField, newTaskName);
         componentAction.clickElement(this.taskSaveButton);
         browser.pause(5000);
     }

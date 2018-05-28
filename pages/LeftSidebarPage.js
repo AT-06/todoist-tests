@@ -34,7 +34,7 @@ class LeftSidebarPage {
         componentAction.clickElement(this.projectMenu);
     }
     fillProjectName(projectName) {
-        componentAction.setValueElement(this.projectNameTextField, projectName);
+        componentAction.setElementValue(this.projectNameTextField, projectName);
     }
     clickAddProjectButton() {
         componentAction.clickElement(this.projectAddSubmit);
@@ -85,7 +85,6 @@ class LeftSidebarPage {
             this.acceptDeleteProject();
         }
     }
-
 
     static isMobile() {
         var width = browser.getViewportSize('width');
