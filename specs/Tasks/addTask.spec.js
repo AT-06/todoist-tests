@@ -9,14 +9,13 @@ let taskNameAdded = 'Task added';
 describe('Acceptance Tests for Task feature', function () {
     beforeEach(function () {
         loginPage.login(config.acc2_email, config.acc2_password);
-        contentPage.addTask(taskNameAdded);
-
     });
     afterEach(function () {
         contentPage.deleteTask(taskNameAdded);
     });
 
     it('should allow to add a new task', function () {
+        contentPage.addTask(taskNameAdded);
         // Adding a task with 'Task added' name.
         expect(contentPage.assertTaskOnContent(taskNameAdded));
     });

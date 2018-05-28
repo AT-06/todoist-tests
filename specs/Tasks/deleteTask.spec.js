@@ -3,7 +3,7 @@ let config = require('../../config.json');
 let expect = require('chai').expect;
 let loginPage = require('../../pages/LoginPage');
 let contentPage = require('../../pages/ContentPage');
-let projectToDelete = 'Project to delete';
+let tasknameToBeDeleted = 'Task to delete';
 
 describe('Acceptance Tests for Task feature Delete', function () {
     beforeEach(function () {

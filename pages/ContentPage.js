@@ -17,6 +17,7 @@ class ContentPage {
         this.priority = '.cmp_priority4.form_action_icon';
         this.flag = '.ist_menu.priority_menu .cmp_priority1';
     }
+
     // Getting element of Project Name on Editor.
     get getProjectOnContent() {
         return componentAction.getElement(this.projectOnContent);
@@ -37,43 +38,81 @@ class ContentPage {
         return (element != null) ? (element.getText === task) : false;
     }
 
-    addTask(taskName) {
+    //Do visible add task.
+    clickAddTaskLink() {
         componentAction.waitToLoading();
         ContentPage.closeTimeZoneAlert();
         if (!browser.isVisible(this.taskAddSubmit)) {
             componentAction.moveToComponent(this.addTaskToday);
             componentAction.clickElement(this.addTaskToday);
         }
+    }
+
+    //Fill the task textField.
+    setTaskNameTextField(taskName) {
         componentAction.setValueElement(this.takNameTextField, taskName);
+
+    }
+
+    //
+    selectPriorityFlag() {
         componentAction.clickElement(this.priority);
         componentAction.clickElement(this.flag);
+    }
+
+
+    clickAddButton() {
         componentAction.clickElement(this.taskAddSubmit);
         browser.pause(5000);
     }
 
-    modifyTask(taskNameToModify, newTaskName) {
+    addTask(taskName) {
+        this.clickAddTaskLink();
+        this.setTaskNameTextField(taskName);
+        this.selectPriorityFlag();
+        this.clickAddButton();
+    }
+
+    selectTaskAtTheList(taskSelected) {
         componentAction.waitToLoading();
-        let elementToModify = componentAction.elementOnList(this.taskList, taskNameToModify);
-        componentAction.rightClickElement(elementToModify);
-        componentAction.clickElement(this.taskModifyOption, );
-        componentAction.setValueElement(this.taskNameTextField, newTaskName);
+        let element = componentAction.elementOnList(this.taskList, taskSelected);
+        componentAction.rightClickElement(element);
+    }
+
+    clickSubMenuEditOption() {
+        componentAction.clickElement(this.taskModifyOption,);
+    }
+
+    clickSaveButton() {
         componentAction.clickElement(this.taskSaveButton);
         browser.pause(5000);
     }
 
-    deleteTask(taskNameToDelete) {
-        componentAction.waitToLoading();
-        let elementToDelete = componentAction.elementOnList(this.taskList, taskNameToDelete);
-        componentAction.rightClickElement(elementToDelete);
-        componentAction.clickElement(this.optionDeleteTask);
-        componentAction.clickModalDeleteButton();
-        browser.pause(5000);
-
+    modifyTask(taskNameToModify, newTaskName) {
+        this.selectTaskAtTheList(taskNameToModify);
+        this.clickSubMenuEditOption();
+        this.setTaskNameTextField(newTaskName);
+        this.clickSaveButton();
     }
 
-    static closeTimeZoneAlert(){
-        if (browser.isVisible(this.timeZoneAlert)){
-            componentAction.clickElement(this.closeTimeZoneAlertButton);/**/
+    clickSubMenuDeleteOption() {
+        componentAction.clickElement(this.optionDeleteTask);
+    }
+
+    clickDeleteButtonModalMenu() {
+        componentAction.clickModalDeleteButton();
+        browser.pause(5000);
+    }
+
+    deleteTask(taskNameToDelete) {
+        this.selectTaskAtTheList(taskNameToDelete);
+        this.clickSubMenuDeleteOption();
+        this.clickDeleteButtonModalMenu();
+    }
+
+    static closeTimeZoneAlert() {
+        if (browser.isVisible(this.timeZoneAlert)) {
+            componentAction.clickElement(this.closeTimeZoneAlertButton);
         }
     }
 }
