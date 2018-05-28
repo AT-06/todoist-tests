@@ -18,8 +18,7 @@ class LeftSidebarPage {
         return componentAction.lastElementOnList(this.projectListOnLeftSidebar, 1);
     }
 
-
-    closeModal() {
+    closeModalTimeZone() {
         browser.pause(5000);
         componentAction.waitToLoading();
         contentPage.closeTimeZoneAlert();
@@ -40,18 +39,19 @@ class LeftSidebarPage {
         componentAction.clickElement(this.projectAddSubmit);
         browser.pause(5000);
     }
+
     // This method is to add new project.
     addProject(projectName) {
-        this.closeModal();
+        this.closeModalTimeZone();
         this.verifyEnvironment();
         this.clickAddProjectLink();
         this.fillProjectName(projectName);
         this.clickAddProjectButton();
     }
 
-    chooseProjectAction(locator) {
+    chooseProjectAction(element) {
         this.lastProjectOnList.rightClick();
-        componentAction.clickElement(locator);
+        componentAction.clickElement(element);
     }
 
     acceptDeleteProject() {
@@ -65,7 +65,7 @@ class LeftSidebarPage {
     }
     // This method is to modify one project.
     modifyProject(projectNameToModify, newProjectName) {
-        this.closeModal();
+        this.closeModalTimeZone();
         this.verifyEnvironment();
         // Adding new project to modify.
         if (this.lastProjectOnList.getText() === projectNameToModify) {
@@ -77,7 +77,7 @@ class LeftSidebarPage {
 
     // This method is to delete a project.
     deleteProject(projectNameToDelete) {
-        this.closeModal();
+        this.closeModalTimeZone();
         this.verifyEnvironment();
         // Adding new project to delete.
         if (this.lastProjectOnList.getText().includes(projectNameToDelete)) {
@@ -87,7 +87,7 @@ class LeftSidebarPage {
     }
 
     static isMobile() {
-        var width = browser.getViewportSize('width');
+        let width = browser.getViewportSize('width');
         return width < 640;
     }
 }

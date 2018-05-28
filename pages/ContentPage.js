@@ -11,9 +11,9 @@ class ContentPage {
         this.optionDeleteTaskFromProject = '.sel_delete_task.menu_item_delete';
         this.taskList = '#agenda_view , .current_editor';
         this.projectOnContent = '#editor a.project_link';
-        ContentPage.timeZoneAlert = '#GB_window';
-        ContentPage.closeTimeZoneAlertLink = 'a.timezone_link:nth-child(4)';
-        ContentPage.closeTimeZoneAlertButton = '.close span';
+        this.timeZoneAlert = '#GB_window';
+        this.closeTimeZoneAlertLink = 'a.timezone_link:nth-child(4)';
+        this.closeTimeZoneAlertButton = '.close span';
         this.priority = '.cmp_priority4.form_action_icon';
         this.flag = '.ist_menu.priority_menu .cmp_priority1';
     }
@@ -105,7 +105,7 @@ class ContentPage {
         this.clickDeleteButtonModalMenu();
     }
 
-    static closeTimeZoneAlert() {
+    closeTimeZoneAlert() {
         if (browser.isVisible(this.timeZoneAlert)) {
             componentAction.clickElement(this.closeTimeZoneAlertButton);
         }

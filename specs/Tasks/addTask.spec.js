@@ -9,7 +9,7 @@ let taskNameAdded = 'Task added to project';
 let projectForTasks = 'Project for tasks';
 
 describe('Acceptance Tests for Task feature', function () {
-/*    //Login application.
+    //Login application.
     beforeEach(function () {
         loginPage.login(config.acc2_email, config.acc2_password);
     });
@@ -30,11 +30,11 @@ describe('Acceptance Tests for Task feature', function () {
         // Adding and deleting a task.
         toolbarPage.addQuickTask(taskNameAdded);
         expect(contentPage.assertTaskOnContent(taskNameAdded));
-    });*/
+    });
 });
 
 describe('Acceptance Tests for Task feature, add tasks to projects', function () {
-/*    //Login application.
+    //Login application.
     beforeEach(function () {
         loginPage.login(config.acc2_email, config.acc2_password);
         leftSidebarPage.addProject(projectForTasks);
@@ -50,5 +50,5 @@ describe('Acceptance Tests for Task feature, add tasks to projects', function ()
         // Adding a task with 'Task added' name.
         contentPage.addTask(taskNameAdded);
         expect(contentPage.assertTaskOnContent(taskNameAdded));
-    });*/
+    });
 });

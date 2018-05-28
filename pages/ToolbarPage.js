@@ -7,11 +7,9 @@ class ToolbarPage {
         this.quickTaskAddButton = '#quick_add_task .submit_btn';
     }
 
-
     clickQuickAddTAskButton() {
         browser.pause(4000);
         componentAction.waitToLoading();
-        componentAction.selectFillAndSummit(this.quickTaskAdd, this.quickTaskTextField, this.quickTaskAddButton, taskName);
         componentAction.clickElement(this.quickTaskAdd);
     }
 
