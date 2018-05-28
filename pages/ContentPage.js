@@ -74,7 +74,7 @@ class ContentPage {
         componentAction.waitToLoading();
         let element = componentAction.elementOnList(this.taskList, taskSelected);
         //componentAction.rightClickElement(element);
-        element.rightClick();
+         element.rightClick();
     }
 
     clickSubMenuEditOption() {

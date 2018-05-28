@@ -29,8 +29,14 @@ class ComponentAction {
     // Right click to element.
     static rightClickElement(element) {
         this.waitElement(element, timeToWait);
+        //this.moveToComponent(element);
         element.rightClick();
+    }
 
+    static rightClickElement(element) {
+        this.waitElement(element, timeToWait);
+        this.moveToComponent(element);
+        element.rightClick();
     }
 
     // Set value to TextField element.
