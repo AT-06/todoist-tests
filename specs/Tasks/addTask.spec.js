@@ -5,10 +5,11 @@ let loginPage = require('../../pages/LoginPage');
 let contentPage = require('../../pages/ContentPage');
 let leftSidebarPage = require('../../pages/LeftSidebarPage');
 let toolbarPage = require('../../pages/ToolbarPage');
-let taskNameAdded = 'Task added to project';
+let taskNameAdded = 'Task added';
+let taskNameAddedProject = 'Task added to Project';
 let projectForTasks = 'Project for tasks';
 let taskPriority = '';
-/*
+
 describe('Acceptance Tests for Task feature', function () {
     //Login application.
     beforeEach(function () {
@@ -32,7 +33,7 @@ describe('Acceptance Tests for Task feature', function () {
         expect(contentPage.assertTaskOnContent(taskNameAdded));
     });
 });
-*/
+
 describe('Acceptance Tests for Task feature, add tasks to projects', function () {
     //Login application.
     beforeEach(function () {
@@ -42,13 +43,13 @@ describe('Acceptance Tests for Task feature, add tasks to projects', function ()
 
     //Delete task, post condition.
     afterEach(function () {
-        contentPage.deleteTask(taskNameAdded);
+        contentPage.deleteTask(taskNameAddedProject);
         leftSidebarPage.deleteProject(projectForTasks);
     });
 
     it('should allow to add a new task to created project', function () {
         // Adding a task with 'Task added' name.
-        contentPage.addTask(taskNameAdded);
-        expect(contentPage.assertTaskOnContent(taskNameAdded));
+        contentPage.addTask(taskNameAddedProject);
+        expect(contentPage.assertTaskOnContent(taskNameAddedProject));
     });
 });

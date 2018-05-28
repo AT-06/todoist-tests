@@ -7,7 +7,9 @@ class ContentPage {
         this.taskAddSubmit = '#editor a.ist_button span';
         this.taskModifyOption = 'div:nth-child(21) > table > tbody > tr.menu_item_edit > td';
         this.taskSaveButton = ' a.ist_button.ist_button_red.submit_btn';
-        this.optionDeleteTask = 'tr.menu_item_delete:nth-child(13)';
+
+        this.optionDeleteTask = 'div:not([style*="display: none;"]) td[data-track="task|more_delete"]';//'tr.menu_item_delete:nth-child(13)';
+
         this.optionDeleteTaskFromProject = '.sel_delete_task.menu_item_delete';
         this.taskList = '#agenda_view , .current_editor';
         this.projectOnContent = '#editor a.project_link';
@@ -92,6 +94,7 @@ class ContentPage {
     }
 
     clickSubMenuDeleteOption() {
+        componentAction.moveToComponent(this.optionDeleteTask);
         componentAction.clickElement(this.optionDeleteTask);
     }
 
