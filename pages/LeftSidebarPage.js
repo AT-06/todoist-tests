@@ -1,5 +1,6 @@
 let contentPage = require('../pages/ContentPage');
 let componentAction = require('../utils/ComponentAction');
+let currentSection = '.filter.current';
 
 class LeftSidebarPage {
     constructor() {
@@ -90,6 +91,11 @@ class LeftSidebarPage {
         let width = browser.getViewportSize('width');
         return width < 640;
     }
+
+    goToCurrentSection() {
+        componentAction.clickElement(currentSection);
+    }
+
 }
 
 module.exports = new LeftSidebarPage();

@@ -14,8 +14,8 @@ class ContentPage {
         this.timeZoneAlert = '#GB_window';
         this.closeTimeZoneAlertLink = 'a.timezone_link:nth-child(4)';
         this.closeTimeZoneAlertButton = '.close span';
-        this.priority = '.cmp_priority4.form_action_icon';
-        this.flag = '.ist_menu.priority_menu .cmp_priority1';
+        this.priority = '.ist_menu.priority_menu .cmp_priority1';
+        this.flag = '.cmp_priority4.form_action_icon';
     }
 
     // Getting element of Project Name on Editor.
@@ -40,7 +40,7 @@ class ContentPage {
 
     clickAddTaskLink() {
         componentAction.waitToLoading();
-        ContentPage.closeTimeZoneAlert();
+        this.closeTimeZoneAlert();
         if (!browser.isVisible(this.taskAddSubmit)) {
             componentAction.moveToComponent(this.addTaskToday);
             componentAction.clickElement(this.addTaskToday);
@@ -71,7 +71,8 @@ class ContentPage {
     selectTaskAtTheList(taskSelected) {
         componentAction.waitToLoading();
         let element = componentAction.elementOnList(this.taskList, taskSelected);
-        componentAction.rightClickElement(element);
+        //componentAction.rightClickElement(element);
+        element.rightClick();
     }
 
     clickSubMenuEditOption() {
