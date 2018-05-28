@@ -7,7 +7,7 @@ let contentPage = require('../../pages/ContentPage');
 let projectToAdd = 'Test Project';
 
 describe('Acceptance Tests to Project feature, delete a project', function () {
-  /*  //Login application.
+    //Login application.
     beforeEach(function () {
         // Login on website with credentials.
         loginPage.login(config.acc1_email, config.acc1_password);
@@ -19,5 +19,5 @@ describe('Acceptance Tests to Project feature, delete a project', function () {
         // Verify if last project added "Project to delete" has been deleted.
         expect(leftSidebarPage.lastProjectOnList.getText()).to.have.not.equal(projectToAdd);
 
-    });*/
+    });
 });

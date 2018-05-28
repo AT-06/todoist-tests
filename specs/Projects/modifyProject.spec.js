@@ -7,7 +7,7 @@ let projectToAdd = 'Test Project';
 let projectToModify = 'Project MODIFIED';
 
 describe('Acceptance Tests to Project feature, modify a project', function () {
-   /* //Login and add a new project.
+    //Login and add a new project.
     beforeEach(function () {
         loginPage.login(config.acc1_email, config.acc1_password);
         leftSidebarPage.addProject(projectToAdd);
@@ -22,5 +22,5 @@ describe('Acceptance Tests to Project feature, modify a project', function () {
         leftSidebarPage.modifyProject(projectToAdd, projectToModify);
         // Verify if last project added "Project to Added" has been changed to "Project MODIFIED".
         expect(leftSidebarPage.lastProjectOnList.getText()).to.have.equal(projectToModify)
-    });*/
+    });
 });

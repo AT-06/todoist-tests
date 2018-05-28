@@ -22,7 +22,7 @@ class ComponentAction {
     // Click to element.
     static clickElement(elementCSS) {
         this.isElementReady(elementCSS, timeToWait);
-        browser.element(elementCSS).click();+
+        browser.element(elementCSS).click();
     }
 
     // Right click to element.
