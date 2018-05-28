@@ -6,6 +6,9 @@ class ToolbarPage {
         this.quickTaskAdd = '#quick_add_task_holder';
         this.quickTaskTextField = '#quick_add_task .sel_richtext_editor';
         this.quickTaskAddButton = '#quick_add_task .submit_btn';
+        this.quickSearchTextField = '.quick_find.fixed_pos';
+        this.showResultButton = '.auto_complete_search';
+        this.list = 'div#ist_complete_floater';
     }
 
     clickQuickAddTAskButton() {
@@ -28,6 +31,19 @@ class ToolbarPage {
         this.clickQuickAddTAskButton();
         this.setTaskTextField(taskName);
         this.clickAddTaskButton();
+    }
+
+    setElement(elementName) {
+        componentAction.setElementValue(this.quickSearchTextField, elementName);
+    }
+
+    clickShowResult() {
+        componentAction.clickElement(this.showResultButton);
+    }
+
+    doQuickSearch(elementName) {
+        this.setElement(elementName);
+        this.clickShowResult();
     }
 }
 
