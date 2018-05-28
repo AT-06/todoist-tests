@@ -22,6 +22,7 @@ class ComponentAction {
     // Click to element.
     static clickElement(elementCSS) {
         this.waitElement(elementCSS, timeToWait);
+        this.moveToComponent(elementCSS);
         browser.element(elementCSS).click();
     }
 

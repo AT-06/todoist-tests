@@ -10,7 +10,7 @@ class LeftSidebarPage {
         this.projectListOnLeftSidebar = '#projects_list';
         this.projectModifyOption = 'td[data-track="projects|menu_edit"]';
         this.projectSaveButton = 'a[data-track="projects|edit_confirm"]';
-        this.projectDeleteOption = '#menu_delete_text';
+        this.projectDeleteOption = 'td[data-track="projects|menu_delete"]';//'#menu_delete_text';
         this.leftMenu = '#left_menu';
         //this.projectDeleteConfirmation = '#GB_window a.ist_button.ist_button_red';
         this.menuHideButton = '#top_bar_inner > a > img';
@@ -52,6 +52,7 @@ class LeftSidebarPage {
 
     chooseProjectAction(element) {
         this.lastProjectOnList.rightClick();
+        componentAction.moveToComponent(element);
         componentAction.clickElement(element);
     }
 
