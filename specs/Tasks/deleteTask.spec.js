@@ -6,13 +6,15 @@ let contentPage = require('../../pages/ContentPage');
 let tasknameToBeDeleted = 'Task to delete';
 
 describe('Acceptance Tests for Task feature Delete', function () {
+    //Login and add a new task.
     beforeEach(function () {
         loginPage.login(config.acc2_email, config.acc2_password);
-        contentPage.addTask(tasknameToBeDeleted);
+        contentPage.addTask(taskNameAdded);
     });
+
     it('should allow to delete a task', function () {
         // Adding and deleting a task.
-        contentPage.deleteTask(tasknameToBeDeleted);
-        expect(!contentPage.assertTaskOnContent(tasknameToBeDeleted));
+        contentPage.deleteTask(taskNameAdded);
+        expect(!contentPage.assertTaskOnContent(taskNameAdded));
     });
 });

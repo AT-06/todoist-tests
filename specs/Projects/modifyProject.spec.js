@@ -6,19 +6,19 @@ let leftSidebarPage = require('../../pages/LeftSidebarPage');
 let projectToAdd = 'Test Project';
 let projectToModify = 'Project MODIFIED';
 
-describe('Acceptance Tests to Project feature modify', function () {
+describe('Acceptance Tests to Project feature, modify a project', function () {
+    //Login and add a new project.
     beforeEach(function () {
-        // Login on website with credentials.
         loginPage.login(config.acc1_email, config.acc1_password);
         leftSidebarPage.addProject(projectToAdd);
     });
 
+    //Delete project, post condition.
     afterEach(function () {
         leftSidebarPage.deleteProject(projectToModify);
     });
 
     it('should allow to Modify a project', function () {
-        //leftSidebarPage.addProject(projectToAdd);
         leftSidebarPage.modifyProject(projectToAdd, projectToModify);
         // Verify if last project added "Project to Added" has been changed to "Project MODIFIED".
         expect(leftSidebarPage.lastProjectOnList.getText()).to.have.equal(projectToModify)

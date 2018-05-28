@@ -7,11 +7,13 @@ let taskNameAdded = 'Task added';
 let taskNameModified = 'Task MODIFIED';
 
 describe('Acceptance Tests for Task feature modify', function () {
+    //Login and add a new task.
     beforeEach(function () {
         loginPage.login(config.acc2_email, config.acc2_password);
         contentPage.addTask(taskNameAdded);
-
     });
+
+    //Delete task, post condition.
     afterEach(function () {
         contentPage.deleteTask(taskNameModified);
     });

@@ -25,8 +25,8 @@ class LoginPage {
             else { // going to ogOutl
                 logOut();
             }
-            componentAction.setValueElement(this.loginEmail, email);
-            componentAction.setValueElement(this.loginPassword, password);
+            componentAction.setElementValue(this.loginEmail, email);
+            componentAction.setElementValue(this.loginPassword, password);
             componentAction.clickElement(this.loginSubmit);
             currentUserLogin = email;
         }

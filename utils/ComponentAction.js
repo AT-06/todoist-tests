@@ -7,35 +7,34 @@ const modalDeleteButton = "#GB_window a.ist_button.ist_button_red";
 class ComponentAction {
 
     // Return is a element visible and existing.
-    static isElementReady(elementCSS) {
-        //browser.waitUntil();
+    static waitElement(elementCSS) {
         browser.waitUntil(function () {
             return browser.isVisible(elementCSS) && browser.isExisting(elementCSS);
         }, timeToWait);
-        //return elementReady;
     }
 
     // Return a element.
     static getElement(elementCSS) {
-        this.isElementReady(elementCSS, timeToWait);
+        this.waitElement(elementCSS, timeToWait);
         return browser.element(elementCSS);
     }
 
     // Click to element.
     static clickElement(elementCSS) {
-        this.isElementReady(elementCSS, timeToWait);
+        this.waitElement(elementCSS, timeToWait);
         browser.element(elementCSS).click();
     }
 
     // Right click to element.
     static rightClickElement(element) {
+        this.waitElement(element, timeToWait);
         element.rightClick();
 
     }
 
     // Set value to TextField element.
-    static setValueElement(elementCSS, value) {
-        this.isElementReady(elementCSS, timeToWait);
+    static setElementValue(elementCSS, value) {
+        this.waitElement(elementCSS, timeToWait);
         browser.element(elementCSS).setValue(value);
     }
 
@@ -73,9 +72,8 @@ class ComponentAction {
     }
 
     static moveToComponent(elementCss) {
-        if (this.isElementReady(elementCss)) {
-            browser.moveToObject(elementCss);
-        }
+        this.waitElement(elementCss, timeToWait);
+        browser.moveToObject(elementCss);
     }
 }
 

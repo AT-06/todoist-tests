@@ -6,8 +6,8 @@ let leftSidebarPage = require('../../pages/LeftSidebarPage');
 let contentPage = require('../../pages/ContentPage');
 let projectToAdd = 'Test Delete Project';
 
-
-describe('Acceptance Tests to Project feature delete', function () {
+describe('Acceptance Tests to Project feature, delete a project', function () {
+    //Login application.
     beforeEach(function () {
         // Login on website with credentials.
         loginPage.login(config.acc1_email, config.acc1_password);
