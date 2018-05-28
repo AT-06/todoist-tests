@@ -5,12 +5,13 @@ let loginPage = require('../../pages/LoginPage');
 let contentPage = require('../../pages/ContentPage');
 let taskNameAdded = 'Task added';
 let taskNameModified = 'Task MODIFIED';
+let taskPriority = '4';
 
 describe('Acceptance Tests for Task feature modify', function () {
     //Login and add a new task.
     beforeEach(function () {
         loginPage.login(config.acc2_email, config.acc2_password);
-        contentPage.addTask(taskNameAdded);
+        contentPage.addTask(taskNameAdded, taskPriority);
     });
 
     //Delete task, post condition.
