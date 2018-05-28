@@ -103,7 +103,6 @@ class ContentPage {
         this.selectTaskAtTheList(taskNameToDelete);
         this.clickSubMenuDeleteOption();
         this.clickDeleteButtonModalMenu();
->>>>>>> develop
     }
 
     static closeTimeZoneAlert() {
