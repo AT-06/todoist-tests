@@ -17,6 +17,7 @@ class ContentPage {
         this.priority = '.cmp_priority4.form_action_icon';
         this.flag = '.ist_menu.priority_menu .cmp_priority1';
     }
+
     // Getting element of Project Name on Editor.
     get getProjectOnContent() {
         return componentAction.getElement(this.projectOnContent);
@@ -54,7 +55,7 @@ class ContentPage {
         componentAction.clickElement(this.flag);
         componentAction.clickElement(this.priority);
     }
-
+    
     clickAddButton() {
         componentAction.clickElement(this.taskAddSubmit);
         browser.pause(5000);
@@ -67,33 +68,47 @@ class ContentPage {
         this.clickAddButton();
     }
 
-    modifyTask(taskNameToModify, newTaskName) {
+    selectTaskAtTheList(taskSelected) {
         componentAction.waitToLoading();
-        let elementToModify = componentAction.elementOnList(this.taskList, taskNameToModify);
-        componentAction.rightClickElement(elementToModify);
-        componentAction.selectFillAndSummit(this.taskModifyOption, this.taskNameTextField, this.taskSaveButton, newTaskName);
-        componentAction.clickElement(this.taskModifyOption, );
-        componentAction.setElementValue(this.taskNameTextField, newTaskName);
+        let element = componentAction.elementOnList(this.taskList, taskSelected);
+        componentAction.rightClickElement(element);
+    }
+
+    clickSubMenuEditOption() {
+        componentAction.clickElement(this.taskModifyOption,);
+    }
+
+    clickSaveButton() {
         componentAction.clickElement(this.taskSaveButton);
         browser.pause(5000);
     }
 
-    deleteTask(taskNameToDelete) {
-        componentAction.waitToLoading();
-        let elementToDelete = componentAction.elementOnList(this.taskList, taskNameToDelete);
-        componentAction.rightClickElement(elementToDelete)
-        if (browser.isVisible(this.optionDeleteTask)) {
-            componentAction.clickElement(this.optionDeleteTask);
-        } else {
-            componentAction.clickElement(this.optionDeleteTaskFromProject);
-        }
+    modifyTask(taskNameToModify, newTaskName) {
+        this.selectTaskAtTheList(taskNameToModify);
+        this.clickSubMenuEditOption();
+        this.setTaskNameTextField(newTaskName);
+        this.clickSaveButton();
+    }
+
+    clickSubMenuDeleteOption() {
+        componentAction.clickElement(this.optionDeleteTask);
+    }
+
+    clickDeleteButtonModalMenu() {
         componentAction.clickModalDeleteButton();
         browser.pause(5000);
     }
 
-    static closeTimeZoneAlert(){
-        if (browser.isVisible(this.timeZoneAlert)){
-            componentAction.clickElement(this.closeTimeZoneAlertButton);/**/
+    deleteTask(taskNameToDelete) {
+        this.selectTaskAtTheList(taskNameToDelete);
+        this.clickSubMenuDeleteOption();
+        this.clickDeleteButtonModalMenu();
+>>>>>>> develop
+    }
+
+    static closeTimeZoneAlert() {
+        if (browser.isVisible(this.timeZoneAlert)) {
+            componentAction.clickElement(this.closeTimeZoneAlertButton);
         }
     }
 }

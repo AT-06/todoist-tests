@@ -20,6 +20,7 @@ describe('Acceptance Tests for Task feature', function () {
     });
 
     it('should allow to add a new task', function () {
+        contentPage.addTask(taskNameAdded);
         // Adding a task with 'Task added' name.
         contentPage.addTask(taskNameAdded);
         expect(contentPage.assertTaskOnContent(taskNameAdded));
