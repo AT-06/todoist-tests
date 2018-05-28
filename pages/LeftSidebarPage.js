@@ -99,8 +99,7 @@ class LeftSidebarPage {
     }
 
     assertTaskInProject(taskName, projectForTasks) {
-        let element = componentAction.elementOnList(this.projectsList, 'Work');
-        element.click();
+        contentPage.clickProjectFromList(projectForTasks, this.projectsList);
         return contentPage.assertTaskOnContent(taskName);
     }
 

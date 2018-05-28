@@ -121,16 +121,17 @@ class ContentPage {
         componentAction.clickElement(this.taskToProjectButton);
     }
 
-    clickProjectFromList(projectForTasks) {
-        let element = componentAction.elementOnList(this.projectsListForTask, 'Work');
+    clickProjectFromList(projectForTasks, locator) {
+        let element = componentAction.elementOnList(locator, 'Work');
         element.click();
     }
+
     addTaskToExistingProject(taskName, projectForTasks, taskPriority) {
         this.clickAddTaskLink();
         this.setTaskNameTextField(taskName);
         this.selectPriorityFlag(taskPriority);
         this.clickSelectProject();
-        this.clickProjectFromList(projectForTasks);
+        this.clickProjectFromList(projectForTasks, this.projectsListForTask);
         this.clickAddButton();
     }
 
