@@ -27,10 +27,4 @@ describe('Acceptance Tests to Project feature', function () {
         expect(contentPage.assertProjectOnContent).to.have.contain(projectToAdd)
     });
 
-    it('should allow to Modify a project', function () {
-        //leftSidebarPage.addProject(projectToAdd);
-        leftSidebarPage.modifyProject(projectToAdd, projectToAdd);
-        // Verify if last project added "Project to Added" has been changed to "Project MODIFIED".
-        expect(leftSidebarPage.lastProjectOnList.getText()).to.have.equal(projectToAdd)
-    });
 });
