@@ -18,6 +18,9 @@ class ContentPage {
         this.closeTimeZoneAlertButton = '.close span';
         this.priority = '.ist_menu.priority_menu .cmp_priority';
         this.flag = '.cmp_priority4.form_action_icon';
+
+        this.taskToProjectButton = '.cmp_project.form_action_icon';
+        this.projectsListForTask = '#ist_complete_result';
     }
 
     // Getting element of Project Name on Editor.
@@ -44,7 +47,6 @@ class ContentPage {
         componentAction.waitToLoading();
         this.closeTimeZoneAlert();
         if (!browser.isVisible(this.taskAddSubmit)) {
-            componentAction.moveToComponent(this.addTaskToday);
             componentAction.clickElement(this.addTaskToday);
         }
     }
@@ -114,6 +116,26 @@ class ContentPage {
             componentAction.clickElement(this.closeTimeZoneAlertButton);
         }
     }
+
+    clickSelectProject() {
+        componentAction.clickElement(this.taskToProjectButton);
+    }
+
+    clickProjectFromList(projectForTasks, locator) {
+        let element = componentAction.elementOnList(locator, 'Work');
+        element.click();
+    }
+
+    addTaskToExistingProject(taskName, projectForTasks, taskPriority) {
+        this.clickAddTaskLink();
+        this.setTaskNameTextField(taskName);
+        this.selectPriorityFlag(taskPriority);
+        this.clickSelectProject();
+        this.clickProjectFromList(projectForTasks, this.projectsListForTask);
+        this.clickAddButton();
+    }
+
+
 }
 
 module.exports = new ContentPage();

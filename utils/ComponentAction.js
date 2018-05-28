@@ -42,6 +42,7 @@ class ComponentAction {
     // Set value to TextField element.
     static setElementValue(elementCSS, value) {
         this.waitElement(elementCSS, timeToWait);
+        this.moveToComponent(elementCSS);
         browser.element(elementCSS).setValue(value);
     }
 

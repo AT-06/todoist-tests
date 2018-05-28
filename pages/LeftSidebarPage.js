@@ -14,6 +14,7 @@ class LeftSidebarPage {
         this.leftMenu = '#left_menu';
         //this.projectDeleteConfirmation = '#GB_window a.ist_button.ist_button_red';
         this.menuHideButton = '#top_bar_inner > a > img';
+        this.projectsList = '#projects_list';
     }
     get lastProjectOnList() {
         return componentAction.lastElementOnList(this.projectListOnLeftSidebar, 1);
@@ -95,6 +96,11 @@ class LeftSidebarPage {
 
     goToCurrentSection() {
         componentAction.clickElement(currentSection);
+    }
+
+    assertTaskInProject(taskName, projectForTasks) {
+        contentPage.clickProjectFromList(projectForTasks, this.projectsList);
+        return contentPage.assertTaskOnContent(taskName);
     }
 
 }
