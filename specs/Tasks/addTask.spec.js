@@ -8,7 +8,7 @@ let toolbarPage = require('../../pages/ToolbarPage');
 let taskNameAdded = 'Task added';
 let taskNameAddedProject = 'Task added to Project';
 let projectForTasks = 'Project for tasks';
-let taskPriority = '';
+let taskPriority = '3';
 
 describe('Acceptance Tests for Task feature', function () {
     //Login application.

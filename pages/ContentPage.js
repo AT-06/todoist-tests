@@ -16,7 +16,7 @@ class ContentPage {
         this.timeZoneAlert = '#GB_window';
         this.closeTimeZoneAlertLink = 'a.timezone_link:nth-child(4)';
         this.closeTimeZoneAlertButton = '.close span';
-        this.priority = '.ist_menu.priority_menu .cmp_priority1';
+        this.priority = '.ist_menu.priority_menu .cmp_priority';
         this.flag = '.cmp_priority4.form_action_icon';
     }
 
@@ -55,9 +55,9 @@ class ContentPage {
 
     selectPriorityFlag(priority) {
         componentAction.clickElement(this.flag);
-        componentAction.clickElement(this.priority);
+        componentAction.clickElement(this.priority.concat(priority));
     }
-    
+
     clickAddButton() {
         componentAction.clickElement(this.taskAddSubmit);
         browser.pause(5000);
