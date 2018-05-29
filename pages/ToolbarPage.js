@@ -1,5 +1,6 @@
 let componentAction = require('../utils/ComponentAction');
 let leftSidebarPage = require('../pages/LeftSidebarPage');
+let contentPage = require('../pages/ContentPage');
 
 class ToolbarPage {
     constructor() {
@@ -9,6 +10,8 @@ class ToolbarPage {
         this.quickSearchTextField = '.quick_find.fixed_pos';
         this.showResultButton = '.auto_complete_search';
         this.list = 'div#ist_complete_floater';
+
+        this.projectsListForTask = '#ist_complete_result';
     }
 
     clickQuickAddTAskButton() {
@@ -27,9 +30,14 @@ class ToolbarPage {
         browser.pause(5000);
     }
 
-    addQuickTask(taskName) {
+    addQuickTask(taskName, priority, projectForTasks) {
         this.clickQuickAddTAskButton();
         this.setTaskTextField(taskName);
+
+        contentPage.selectPriorityFlag(priority);
+        contentPage.clickSelectProject();
+        contentPage.clickProjectFromList(projectForTasks, this.projectsListForTask);
+
         this.clickAddTaskButton();
     }
 

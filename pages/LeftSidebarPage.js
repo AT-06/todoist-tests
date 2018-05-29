@@ -42,6 +42,10 @@ class LeftSidebarPage {
         browser.pause(5000);
     }
 
+    returnToTodaySection() {
+        componentAction.clickElement(this.todaySection);
+    }
+
     // This method is to add new project.
     addProject(projectName) {
         this.closeModalTimeZone();
@@ -49,9 +53,8 @@ class LeftSidebarPage {
         this.clickAddProjectLink();
         this.fillProjectName(projectName);
         this.clickAddProjectButton();
-        componentAction.clickElement(this.todaySection);
-
-
+        this.verifyEnvironment();
+        this.returnToTodaySection();
     }
 
     chooseProjectAction(element) {
@@ -85,7 +88,6 @@ class LeftSidebarPage {
     deleteProject(projectNameToDelete) {
         this.closeModalTimeZone();
         this.verifyEnvironment();
-        // Adding new project to delete.
         if (this.lastProjectOnList.getText().includes(projectNameToDelete)) {
             this.chooseProjectAction(this.projectDeleteOption);
             this.acceptDeleteProject();

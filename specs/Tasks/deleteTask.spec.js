@@ -13,7 +13,7 @@ describe('Acceptance Tests for Task feature Delete', function () {
     beforeEach(function () {
         loginPage.login(config.acc2_email, config.acc2_password);
         leftSidebarPage.addProject(projectForTasks);
-        contentPage.addTask(taskNameToBeDeleted, taskPriority, projectForTasks);//contentPage.addTask(taskNameToBeDeleted, taskPriority);
+        contentPage.addTask(taskNameToBeDeleted, taskPriority, projectForTasks);
     });
 
     //Delete project, post condition.
