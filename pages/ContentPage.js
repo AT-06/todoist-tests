@@ -1,26 +1,29 @@
 let componentAction = require('../utils/ComponentAction');
 
 class ContentPage {
+
     constructor() {
         this.taskNameTextField = '.richtext_editor.sel_richtext_editor'; //'#agenda_view  td.text_box_holder div';
         this.addTaskToday = '.agenda_add_task , .pe_controller .action';//'#editor a.action';
         this.taskAddSubmit = '#editor a.ist_button span';
-        this.taskModifyOption = 'div:nth-child(21) > table > tbody > tr.menu_item_edit > td';
+        this.taskModifyOption = 'div:not([style*="display: none;"]) td[data-track="task|more_edit"]';
         this.taskSaveButton = ' a.ist_button.ist_button_red.submit_btn';
-
         this.optionDeleteTask = 'div:not([style*="display: none;"]) td[data-track="task|more_delete"]';//'tr.menu_item_delete:nth-child(13)';
-
-        this.optionDeleteTaskFromProject = '.sel_delete_task.menu_item_delete';
         this.taskList = '#agenda_view , .current_editor';
         this.projectOnContent = '#editor a.project_link';
         this.timeZoneAlert = '#GB_window';
-        this.closeTimeZoneAlertLink = 'a.timezone_link:nth-child(4)';
         this.closeTimeZoneAlertButton = '.close span';
-        this.priority = '.ist_menu.priority_menu .cmp_priority';
-        this.flag = '.cmp_priority4.form_action_icon';
 
+        this.flag = '.form_action_icon';
+        this.priority = '.ist_menu.priority_menu ';
+
+        this.taskPriority = '.cmp_priority4';
         this.taskToProjectButton = '.cmp_project.form_action_icon';
         this.projectsListForTask = '#ist_complete_result';
+        this.projectListOnLeftSidebar = '#projects_list';
+    }
+    lastProjectOnList() {
+        return componentAction.lastElementOnList(this.projectListOnLeftSidebar, 1);
     }
 
     // Getting element of Project Name on Editor.
@@ -30,6 +33,7 @@ class ContentPage {
 
     // Getting String Project Name on Editor.
     get assertProjectOnContent() {
+        this.lastProjectOnList().click();
         let assert = '';
         this.getProjectOnContent.elements('span').value.forEach(project => {
             assert = project.getText();
@@ -39,8 +43,29 @@ class ContentPage {
 
     // Getting String Project Name on Editor.
     assertTaskOnContent(task) {
+        //this.lastProjectOnList().click();
         let element = componentAction.elementOnList(this.taskList, task);
         return (element != null) ? (element.getText === task) : false;
+    }
+
+    // Getting String Project Name on Editor.
+    assertTaskOnProject(task, projectForTasksModified) {
+        let project = componentAction.elementOnList(this.projectListOnLeftSidebar, projectForTasksModified);
+        project.click();
+        let element = componentAction.elementOnList(this.taskList, task);
+        return (element != null) ? (element.getText === task) : false;
+    }
+
+    clickLastTask(task) {
+        let element = componentAction.elementOnList(this.taskList, task);
+        element.click();
+    }
+
+    assertTaskOnContentPriority(task) {
+        this.clickLastTask(task);
+        let ret = browser.isVisible(this.flag);
+        this.lastProjectOnList().click();
+        return ret;
     }
 
     clickAddTaskLink() {
@@ -55,9 +80,27 @@ class ContentPage {
         componentAction.setElementValue(this.taskNameTextField, taskName);
     }
 
-    selectPriorityFlag(priority) {
-        componentAction.clickElement(this.flag);
-        componentAction.clickElement(this.priority.concat(priority));
+    selectPriorityFlag(priority, defaultPriority) {
+        componentAction.clickElement(this.taskPriority.concat(this.flag));
+        componentAction.clickElement(this.setPriorityLevel(priority, defaultPriority));
+        this.setFlagValue(this.taskPriority.replace(defaultPriority, priority));
+    }
+
+    clickSelectProject() {
+        componentAction.clickElement(this.taskToProjectButton);
+    }
+
+    setPriorityLevel(priority, defaultPriority) {
+        return this.priority.concat(this.taskPriority.replace(defaultPriority, priority));
+    }
+
+    setFlagValue(newPriority) {
+        this.flag = newPriority.concat(this.flag);
+    }
+
+    clickProjectFromList(projectForTasks, locator) {
+        let element = componentAction.elementOnList(locator, projectForTasks);
+        element.click();
     }
 
     clickAddButton() {
@@ -65,18 +108,19 @@ class ContentPage {
         browser.pause(5000);
     }
 
-    addTask(taskName, priority) {
+    addTask(taskName, priority, projectForTasks, defaultPriority) {
         this.clickAddTaskLink();
         this.setTaskNameTextField(taskName);
-        this.selectPriorityFlag(priority);
+        this.selectPriorityFlag(priority, defaultPriority);
+        this.clickSelectProject();
+        this.clickProjectFromList(projectForTasks, this.projectsListForTask);
         this.clickAddButton();
     }
 
     selectTaskAtTheList(taskSelected) {
         componentAction.waitToLoading();
         let element = componentAction.elementOnList(this.taskList, taskSelected);
-        //componentAction.rightClickElement(element);
-         element.rightClick();
+        element.rightClick();
     }
 
     clickSubMenuEditOption() {
@@ -88,10 +132,17 @@ class ContentPage {
         browser.pause(5000);
     }
 
-    modifyTask(taskNameToModify, newTaskName) {
+    modifyTask(taskNameToModify, newTaskName, projectNameToModify, newProjectName, priorityToModify, newTaskPriority) {
+        this.lastProjectOnList().click();
         this.selectTaskAtTheList(taskNameToModify);
         this.clickSubMenuEditOption();
         this.setTaskNameTextField(newTaskName);
+
+        componentAction.clickElement(this.flag);
+        componentAction.clickElement(this.priority.concat(this.taskPriority.replace('4', priorityToModify).replace(priorityToModify, newTaskPriority)));
+
+        this.clickSelectProject();
+        this.clickProjectFromList(newProjectName, this.projectsListForTask);
         this.clickSaveButton();
     }
 
@@ -117,22 +168,9 @@ class ContentPage {
         }
     }
 
-    clickSelectProject() {
-        componentAction.clickElement(this.taskToProjectButton);
-    }
-
-    clickProjectFromList(projectForTasks, locator) {
-        let element = componentAction.elementOnList(locator, 'Work');
-        element.click();
-    }
-
-    addTaskToExistingProject(taskName, projectForTasks, taskPriority) {
-        this.clickAddTaskLink();
-        this.setTaskNameTextField(taskName);
-        this.selectPriorityFlag(taskPriority);
-        this.clickSelectProject();
-        this.clickProjectFromList(projectForTasks, this.projectsListForTask);
-        this.clickAddButton();
+    resetLocators() {
+        this.flag = '.form_action_icon';
+        this.priority = '.ist_menu.priority_menu ';
     }
 
 

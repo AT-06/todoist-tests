@@ -12,9 +12,9 @@ class LeftSidebarPage {
         this.projectSaveButton = 'a[data-track="projects|edit_confirm"]';
         this.projectDeleteOption = 'td[data-track="projects|menu_delete"]';//'#menu_delete_text';
         this.leftMenu = '#left_menu';
-        //this.projectDeleteConfirmation = '#GB_window a.ist_button.ist_button_red';
         this.menuHideButton = '#top_bar_inner > a > img';
         this.projectsList = '#projects_list';
+        this.todaySection = 'li[data-track="navigation|today"]';
     }
     get lastProjectOnList() {
         return componentAction.lastElementOnList(this.projectListOnLeftSidebar, 1);
@@ -42,6 +42,10 @@ class LeftSidebarPage {
         browser.pause(5000);
     }
 
+    returnToTodaySection() {
+        componentAction.clickElement(this.todaySection);
+    }
+
     // This method is to add new project.
     addProject(projectName) {
         this.closeModalTimeZone();
@@ -49,6 +53,8 @@ class LeftSidebarPage {
         this.clickAddProjectLink();
         this.fillProjectName(projectName);
         this.clickAddProjectButton();
+        this.verifyEnvironment();
+        this.returnToTodaySection();
     }
 
     chooseProjectAction(element) {
@@ -82,7 +88,6 @@ class LeftSidebarPage {
     deleteProject(projectNameToDelete) {
         this.closeModalTimeZone();
         this.verifyEnvironment();
-        // Adding new project to delete.
         if (this.lastProjectOnList.getText().includes(projectNameToDelete)) {
             this.chooseProjectAction(this.projectDeleteOption);
             this.acceptDeleteProject();
