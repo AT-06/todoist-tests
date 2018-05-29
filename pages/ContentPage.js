@@ -1,28 +1,29 @@
 let componentAction = require('../utils/ComponentAction');
 
 class ContentPage {
+
     constructor() {
         this.taskNameTextField = '.richtext_editor.sel_richtext_editor'; //'#agenda_view  td.text_box_holder div';
         this.addTaskToday = '.agenda_add_task , .pe_controller .action';//'#editor a.action';
         this.taskAddSubmit = '#editor a.ist_button span';
         this.taskModifyOption = 'div:nth-child(21) > table > tbody > tr.menu_item_edit > td';
         this.taskSaveButton = ' a.ist_button.ist_button_red.submit_btn';
-
         this.optionDeleteTask = 'div:not([style*="display: none;"]) td[data-track="task|more_delete"]';//'tr.menu_item_delete:nth-child(13)';
-
-        this.optionDeleteTaskFromProject = '.sel_delete_task.menu_item_delete';
         this.taskList = '#agenda_view , .current_editor';
         this.projectOnContent = '#editor a.project_link';
         this.timeZoneAlert = '#GB_window';
-        this.closeTimeZoneAlertLink = 'a.timezone_link:nth-child(4)';
         this.closeTimeZoneAlertButton = '.close span';
-        this.priority = '.ist_menu.priority_menu .cmp_priority';
+        this.priority = '.ist_menu.priority_menu ';
         this.flag = '.cmp_priority4.form_action_icon';
-
+        this.taskPriority = '.cmp_priority';
         this.taskToProjectButton = '.cmp_project.form_action_icon';
         this.projectsListForTask = '#ist_complete_result';
-    }
 
+        this.projectListOnLeftSidebar = '#projects_list';
+    }
+    lastProjectOnList() {
+        return componentAction.lastElementOnList(this.projectListOnLeftSidebar, 1);
+    }
     // Getting element of Project Name on Editor.
     get getProjectOnContent() {
         return componentAction.getElement(this.projectOnContent);
@@ -39,8 +40,17 @@ class ContentPage {
 
     // Getting String Project Name on Editor.
     assertTaskOnContent(task) {
+        this.lastProjectOnList().click();
         let element = componentAction.elementOnList(this.taskList, task);
         return (element != null) ? (element.getText === task) : false;
+    }
+
+    assertTaskOnContentPriority(task) {
+        let element = componentAction.elementOnList(this.taskList, task);
+        element.click();
+        let ret = browser.isVisible(this.flag);
+        this.lastProjectOnList().click();
+        return ret;
     }
 
     clickAddTaskLink() {
@@ -56,8 +66,10 @@ class ContentPage {
     }
 
     selectPriorityFlag(priority) {
+        this.priority = this.priority.concat(this.taskPriority.concat(priority));
         componentAction.clickElement(this.flag);
-        componentAction.clickElement(this.priority.concat(priority));
+        componentAction.clickElement(this.priority);
+        this.flag = this.flag.replace('.cmp_priority4', this.taskPriority.concat(priority));
     }
 
     clickAddButton() {
@@ -65,10 +77,12 @@ class ContentPage {
         browser.pause(5000);
     }
 
-    addTask(taskName, priority) {
+    addTask(taskName, priority, projectForTasks) {
         this.clickAddTaskLink();
         this.setTaskNameTextField(taskName);
         this.selectPriorityFlag(priority);
+        this.clickSelectProject();
+        this.clickProjectFromList(projectForTasks, this.projectsListForTask);
         this.clickAddButton();
     }
 
@@ -122,7 +136,7 @@ class ContentPage {
     }
 
     clickProjectFromList(projectForTasks, locator) {
-        let element = componentAction.elementOnList(locator, 'Work');
+        let element = componentAction.elementOnList(locator, projectForTasks);
         element.click();
     }
 

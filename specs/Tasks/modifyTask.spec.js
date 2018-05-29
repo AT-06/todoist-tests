@@ -5,18 +5,21 @@ let loginPage = require('../../pages/LoginPage');
 let contentPage = require('../../pages/ContentPage');
 let taskNameAdded = 'Task added';
 let taskNameModified = 'Task MODIFIED';
+let projectForTasks = 'Project for tasks';
 let taskPriority = '4';
 
 describe('Acceptance Tests for Task feature modify', function () {
     //Login and add a new task.
     beforeEach(function () {
         loginPage.login(config.acc2_email, config.acc2_password);
-        contentPage.addTask(taskNameAdded, taskPriority);
+        leftSidebarPage.addProject(projectForTasks);
+        contentPage.addTask(taskNameModified, taskPriority, projectForTasks);
     });
 
     //Delete task, post condition.
     afterEach(function () {
         contentPage.deleteTask(taskNameModified);
+        leftSidebarPage.deleteProject(projectForTasks);
     });
 
     it('should allow to modify a new task', function () {

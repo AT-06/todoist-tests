@@ -7,7 +7,7 @@ let toolbarPage = require('../../pages/ToolbarPage');
 let leftSidebarPage = require('../../pages/LeftSidebarPage');
 let taskToSearch = 'Search task';
 let taskPriority = '3';
-
+/*
 describe('Acceptance Tests for Task feature modify', function () {
     //Login and add a new task.
     beforeEach(function () {
@@ -25,4 +25,4 @@ describe('Acceptance Tests for Task feature modify', function () {
         toolbarPage.doQuickSearch(taskToSearch);
         expect(contentPage.assertTaskOnContent(taskToSearch));
     });
-});
+});*/
