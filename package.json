@@ -9,7 +9,10 @@
     "chrome": "wdio wdio.conf.js",
     "parallel": "wdio wdio.parallel.conf.js",
     "mobile": "wdio wdio.mobile.conf.js",
-    "saucelabs": "wdio wdio.saucelabs.conf.js"
+    "saucelabs": "wdio wdio.saucelabs.conf.js",
+    "smartphone": "wdio wdio.smartphone.conf.js",
+    "docker": "wdio wdio.docker.conf.js"
+
   },
   "keywords": [],
   "author": "",
