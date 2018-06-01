@@ -21,10 +21,10 @@
     "wdio-docker-service": "^1.2.0",
     "wdio-mocha-framework": "^0.5.13",
     "wdio-sauce-service": "^0.4.8",
-    "webdriverio": "^4.12.0",
-    "axios": "^0.18.0"
+    "webdriverio": "^4.12.0"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "mocha": "^5.1.1",
     "sauce-connect-launcher": "^1.2.4",
     "saucelabs": "^1.5.0",
