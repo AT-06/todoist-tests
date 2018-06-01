@@ -4,6 +4,7 @@ class RequestManager {
     intanceRequests() {
         return axios.create({
             baseURL: 'https://beta.todoist.com/API/v8',
+            timeout: 5000,
             headers: {
                 'Authorization': 'Bearer ea8c82aa2deaed6de59d372d0e25ac05e09697c2'
             }
@@ -11,16 +12,14 @@ class RequestManager {
     }
 
     getResponse() {
-        let instance =  axios.create({
-            baseURL: 'https://beta.todoist.com/API/v8',
-            headers: {
-                'Authorization': 'Bearer ea8c82aa2deaed6de59d372d0e25ac05e09697c2'
-            }
-        });
-        return instance
+        this.intanceRequests()
             .get('/projects')
-            .then(response => console.log(response))
-            .catch(error => console.log(error));
+            .then(function(response) {
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
     }
 }
 

@@ -24,7 +24,7 @@
     "webdriverio": "^4.12.0"
   },
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.0",
     "mocha": "^5.1.1",
     "sauce-connect-launcher": "^1.2.4",
     "saucelabs": "^1.5.0",
