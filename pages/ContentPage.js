@@ -14,6 +14,10 @@ class ContentPage {
         this.timeZoneAlert = '#GB_window';
         this.closeTimeZoneAlertButton = '.close span';
 
+        this.termsDialog = '.terms_dialog';
+        this.agreeTermsButton = '.terms_dialog .ist_button';
+
+
         this.flag = '.form_action_icon';
         this.priority = '//div[contains(@class,"ist_menu priority_menu")]//img[contains(@class,"NUMPRIORITY")]';
 
@@ -70,9 +74,15 @@ class ContentPage {
 
     clickAddTaskLink() {
         componentAction.waitToLoading();
+        this.closeTermsOfService();
         this.closeTimeZoneAlert();
         if (!browser.isVisible(this.taskAddSubmit)) {
             componentAction.clickElement(this.addTaskToday);
+        }
+    }
+    closeTermsOfService() {
+        if(browser.isVisible(this.termsDialog)) {
+            componentAction.clickElement(this.agreeTermsButton);
         }
     }
 
