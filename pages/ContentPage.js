@@ -15,9 +15,9 @@ class ContentPage {
         this.closeTimeZoneAlertButton = '.close span';
 
         this.flag = '.form_action_icon';
-        this.priority = '.ist_menu.priority_menu ';
+        this.priority = '//div[contains(@class,"ist_menu priority_menu")]//img[contains(@class,"NUMPRIORITY")]';
 
-        this.taskPriority = '.cmp_priority4';
+        this.taskPriority = 'img[data-track="task_form|priority"]';//this.taskPriority = '.cmp_priority4';
         this.taskToProjectButton = '.cmp_project.form_action_icon';
         this.projectsListForTask = '#ist_complete_result';
         this.projectListOnLeftSidebar = '#projects_list';
@@ -80,18 +80,18 @@ class ContentPage {
         componentAction.setElementValue(this.taskNameTextField, taskName);
     }
 
-    selectPriorityFlag(priority, defaultPriority) {
-        componentAction.clickElement(this.taskPriority.concat(this.flag));
-        componentAction.clickElement(this.setPriorityLevel(priority, defaultPriority));
-        this.setFlagValue(this.taskPriority.replace(defaultPriority, priority));
+    selectPriorityFlag(priority) {
+        componentAction.clickElement(this.taskPriority);
+        componentAction.clickElement(this.setPriorityLevel(priority));
+        this.setFlagValue(this.taskPriority.replace(priority));
     }
 
     clickSelectProject() {
         componentAction.clickElement(this.taskToProjectButton);
     }
 
-    setPriorityLevel(priority, defaultPriority) {
-        return this.priority.concat(this.taskPriority.replace(defaultPriority, priority));
+    setPriorityLevel(priority) {
+        return this.priority.replace("NUMPRIORITY", priority);
     }
 
     setFlagValue(newPriority) {
@@ -108,10 +108,10 @@ class ContentPage {
         browser.pause(5000);
     }
 
-    addTask(taskName, priority, projectForTasks, defaultPriority) {
+    addTask(taskName, priority, projectForTasks) {
         this.clickAddTaskLink();
         this.setTaskNameTextField(taskName);
-        this.selectPriorityFlag(priority, defaultPriority);
+        this.selectPriorityFlag(priority);
         this.clickSelectProject();
         this.clickProjectFromList(projectForTasks, this.projectsListForTask);
         this.clickAddButton();
@@ -124,7 +124,7 @@ class ContentPage {
     }
 
     clickSubMenuEditOption() {
-        componentAction.clickElement(this.taskModifyOption,);
+        componentAction.clickElement(this.taskModifyOption);
     }
 
     clickSaveButton() {

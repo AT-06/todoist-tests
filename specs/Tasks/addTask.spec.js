@@ -30,7 +30,7 @@ describe('Acceptance Tests for Task feature, add a task', function () {
 
     it('should allow to add a new task to created project', function () {
         // Adding a task with 'Task added' name.
-        contentPage.addTask(task.name, task.priority, task.project, '4');
+        contentPage.addTask(task.name, task.priority, task.project);
         expect(contentPage.assertTaskOnContent(task.name));
         expect(contentPage.assertTaskOnContentPriority(task.name));
     });
