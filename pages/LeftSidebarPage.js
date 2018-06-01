@@ -23,6 +23,7 @@ class LeftSidebarPage {
     closeModalTimeZone() {
         browser.pause(5000);
         componentAction.waitToLoading();
+        contentPage.closeTermsOfService();
         contentPage.closeTimeZoneAlert();
     }
     verifyEnvironment() {

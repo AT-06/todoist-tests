@@ -32,7 +32,6 @@ class LoginPage {
         }
 
 
-        browser.pause(500000000);
     }
 
     //Log out current user and go again to log in page.
