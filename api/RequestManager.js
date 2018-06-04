@@ -6,6 +6,7 @@ class RequestManager {
         this.status;
         this.error;
     }
+    
     intanceRequests() {
         return axios.create({
             baseURL: config.api_URL,
