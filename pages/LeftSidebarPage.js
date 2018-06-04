@@ -12,9 +12,10 @@ class LeftSidebarPage {
         this.projectSaveButton = 'a[data-track="projects|edit_confirm"]';
         this.projectDeleteOption = 'td[data-track="projects|menu_delete"]';//'#menu_delete_text';
         this.leftMenu = '#left_menu';
-        this.menuHideButton = '#top_bar_inner > a > img';
+        this.menuHideButton = '.cmp_light_menu_toggle';
         this.projectsList = '#projects_list';
         this.todaySection = 'li[data-track="navigation|today"]';
+        this.optionsSection = '#top_filters';
     }
     get lastProjectOnList() {
         return componentAction.lastElementOnList(this.projectListOnLeftSidebar, 1);
@@ -40,10 +41,11 @@ class LeftSidebarPage {
     }
     clickAddProjectButton() {
         componentAction.clickElement(this.projectAddSubmit);
-        browser.pause(5000);
+
     }
 
     returnToTodaySection() {
+        componentAction.moveToComponent(this.optionsSection);
         componentAction.clickElement(this.todaySection);
     }
 
