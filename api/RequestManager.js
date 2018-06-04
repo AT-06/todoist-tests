@@ -3,11 +3,11 @@ let config = require('../config.json');
 
 class RequestManager {
     constructor() {
-        this.status;
+        this.requestResponse;
         this.error;
     }
     
-    intanceRequests() {
+    requestInstance() {
         return axios.create({
             baseURL: config.api_URL,
             timeout: 10000,
@@ -18,7 +18,7 @@ class RequestManager {
     }
 
     get(endpoint) {
-        return this.intanceRequests().request({
+        return this.requestInstance().request({
             method: 'GET',
             url: endpoint,
             responseType: 'json'
@@ -27,19 +27,17 @@ class RequestManager {
     }
 
     post(endpoint, data) {
-        return this.intanceRequests().request({
+        return this.requestInstance().request({
             method: 'POST',
             url: endpoint,
-            responseType: 'application/json',
-            data: {
-                name: 'Project created API'
-            }
+            responseType: 'json',
+            data : data
         }).then(response => this.setResponse(response))
             .catch(error => this.setError(error));
     }
 
     put(endpoint, body) {
-        return this.intanceRequests().request({
+        return this.requestInstance().request({
             method: 'PUT',
             url: endpoint,
             responseType: 'json',
@@ -49,7 +47,7 @@ class RequestManager {
     }
 
     delete(endpoint) {
-        return this.intanceRequests().request({
+        return this.requestInstance().request({
             method: 'DELETE',
             url: endpoint,
             responseType: 'json'
@@ -58,17 +56,19 @@ class RequestManager {
     }
 
     setResponse(response) {
-        console.log("status:" + response.status);
-        this.status = response.status;
+        console.log("requestResponse:" + response.status);
+        this.requestResponse = response;
     }
 
     setError(error) {
+        console.log("error:" + error.message);
         this.error = error.status;
     }
 
     getResponse() {
-        return this.status;
+        return this.requestResponse;
     }
+
 }
 
 module.exports = new RequestManager();
