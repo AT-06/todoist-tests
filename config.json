@@ -4,5 +4,6 @@
   "acc2_email": "",
   "acc2_password": "",
   "api_URL": "",
-  "api_Token": ""
+  "api_Token": "",
+  "nameBrowser": ""
 }
