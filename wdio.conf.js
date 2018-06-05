@@ -1,4 +1,3 @@
-let config = require('./config.json');
 exports.config = {
     //
     // ==================
@@ -44,7 +43,7 @@ exports.config = {
         // 5 instances get started at a time.
         maxInstances: 1,
         //
-        browserName: config.nameBrowser
+        browserName: "chrome"
     }],
 
     //
