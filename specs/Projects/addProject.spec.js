@@ -4,6 +4,7 @@ let expect = require('chai').expect;
 let loginPage = require('../../pages/LoginPage');
 let leftSidebarPage = require('../../pages/LeftSidebarPage');
 let contentPage = require('../../pages/ContentPage');
+let requestManager = require('../../api/RequestManager');
 
 describe('Acceptance Tests to Project feature, add a project', function () {
     let project = {
@@ -17,7 +18,8 @@ describe('Acceptance Tests to Project feature, add a project', function () {
 
     //Delete project, post condition.
     afterEach(function () {
-        leftSidebarPage.deleteProject(project.name);
+        //leftSidebarPage.deleteProject(project.name);
+        return requestManager.get('/projects', project.name, config.api_Token1);
     });
 
     it('should allow to add new project', function () {

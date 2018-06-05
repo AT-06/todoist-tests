@@ -31,13 +31,12 @@ class ToolbarPage {
     }
 
     addQuickTask(taskName, priority, projectForTasks) {
+        browser.refresh();
         this.clickQuickAddTAskButton();
         this.setTaskTextField(taskName);
-
         contentPage.selectPriorityFlag(priority);
         contentPage.clickSelectProject();
         contentPage.clickProjectFromList(projectForTasks, this.projectsListForTask);
-
         this.clickAddTaskButton();
     }
 

@@ -5,29 +5,30 @@ class RequestManager {
     constructor() {
         this.requestResponse;
         this.error;
+        this.projectId;
     }
     
-    requestInstance() {
+    requestInstance(token) {
         return axios.create({
             baseURL: config.api_URL,
             timeout: 10000,
             headers: {
-                'Authorization': config.api_Token
+                'Authorization': token
             }
         });
     }
 
-    get(endpoint) {
-        return this.requestInstance().request({
+    get(endpoint, projectName, token) {
+        return this.requestInstance(token).request({
             method: 'GET',
             url: endpoint,
             responseType: 'json'
-        }).then(response => this.setResponse(response))
+        }).then(response => this.deleteProject(response.data, projectName, endpoint, token))
             .catch(error => this.setError(error));
     }
 
-    post(endpoint, data) {
-        return this.requestInstance().request({
+    post(endpoint, data, token) {
+        return this.requestInstance(token).request({
             method: 'POST',
             url: endpoint,
             responseType: 'json',
@@ -36,8 +37,8 @@ class RequestManager {
             .catch(error => this.setError(error));
     }
 
-    put(endpoint, body) {
-        return this.requestInstance().request({
+    put(endpoint, body, token) {
+        return this.requestInstance(token).request({
             method: 'PUT',
             url: endpoint,
             responseType: 'json',
@@ -46,8 +47,8 @@ class RequestManager {
             .catch(error => this.setError(error));
     }
 
-    delete(endpoint) {
-        return this.requestInstance().request({
+    delete(endpoint, token) {
+        return this.requestInstance(token).request({
             method: 'DELETE',
             url: endpoint,
             responseType: 'json'
@@ -56,6 +57,7 @@ class RequestManager {
     }
 
     setResponse(response) {
+        console.log("response:" + response.status);
         this.requestResponse = response;
     }
 
@@ -68,6 +70,35 @@ class RequestManager {
         return this.requestResponse;
     }
 
+    deleteProject(response, projectName, endpoint, token) {
+        if (endpoint.includes('project')) {
+            return this.delete(endpoint + '/' + this.getProjectId(response, projectName), token);
+        } else {
+            return this.delete(endpoint + '/' + this.getTaskId(response, projectName), token);
+        }
+    }
+    getProjectId(response, projectName) {
+        let id;
+        Object.entries(response).forEach(
+            ([key, value]) => {
+                if (value.name == projectName) {
+                    id = value.id;
+                }
+            }
+        );
+        return id;
+    }
+    getTaskId(response, taskName) {
+        let id;
+        Object.entries(response).forEach(
+            ([key, value]) => {
+                if (value.content == taskName) {
+                    id = value.id;
+                }
+            }
+        );
+        return id;
+    }
 }
 
 module.exports = new RequestManager();

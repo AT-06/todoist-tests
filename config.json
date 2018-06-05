@@ -1,8 +1,9 @@
 {
-  "acc1_email": "",
-  "acc1_password": "",
-  "acc2_email": "",
-  "acc2_password": "",
+  "acc1_email": "manu.j.vv@gmail.com",
+  "acc1_password": "Pass123$",
+  "acc2_email": "manuel.valdez@fundacion-jala.org",
+  "acc2_password": "Pass123$",
   "api_URL": "https://beta.todoist.com/API/v8",
-  "api_Token": "Bearer "
+  "api_Token1": "Bearer ea8c82aa2deaed6de59d372d0e25ac05e09697c2",
+  "api_Token2": "Bearer 64be3998b8385ca71ecc3c2f13d21b9d7fa31e35"
 }

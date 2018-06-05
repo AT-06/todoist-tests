@@ -119,6 +119,7 @@ class ContentPage {
     }
 
     addTask(taskName, priority, projectForTasks) {
+        browser.refresh();
         this.clickAddTaskLink();
         this.setTaskNameTextField(taskName);
         this.selectPriorityFlag(priority);
