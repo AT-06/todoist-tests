@@ -1,8 +1,8 @@
 {
-  "acc1_email": "manu.j.vv@gmail.com",
-  "acc1_password": "Pass123$",
+  "acc1_email": "",
+  "acc1_password": "",
   "acc2_email": "",
   "acc2_password": "",
   "api_URL": "https://beta.todoist.com/API/v8",
-  "api_Token": "Bearer ea8c82aa2deaed6de59d372d0e25ac05e09697c2"
+  "api_Token": "Bearer "
 }

@@ -56,7 +56,6 @@ class RequestManager {
     }
 
     setResponse(response) {
-        console.log("requestResponse:" + response.status);
         this.requestResponse = response;
     }
 
