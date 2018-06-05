@@ -29,11 +29,8 @@ describe('Acceptance Tests for Task feature, add a task', function () {
 
     //Delete task, post condition.
     afterEach(function () {
-        //contentPage.deleteTask(task.name);
         return requestManager.get('/tasks', task.name, config.api_Token2);
-        //leftSidebarPage.deleteProject(task.project);
         return requestManager.get('/projects', data.name, config.api_Token2);
-        //contentPage.resetLocators();
     });
 
     it('should allow to add a new task to created project', function () {

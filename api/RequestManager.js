@@ -23,7 +23,8 @@ class RequestManager {
             method: 'GET',
             url: endpoint,
             responseType: 'json'
-        }).then(response => this.deleteProject(response.data, projectName, endpoint, token))
+        //}).then(response => this.deleteProject(response.data, projectName, endpoint, token))
+        }).then(response => this.setResponse(response))
             .catch(error => this.setError(error));
     }
 
@@ -69,6 +70,8 @@ class RequestManager {
     getResponse() {
         return this.requestResponse;
     }
+
+
 
     deleteProject(response, projectName, endpoint, token) {
         if (endpoint.includes('project')) {

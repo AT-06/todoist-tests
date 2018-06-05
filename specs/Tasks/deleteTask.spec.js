@@ -22,8 +22,7 @@ describe('Acceptance Tests for Task feature Delete', function () {
     //Login and add a new task.
     beforeEach(function () {
         loginPage.login(config.acc2_email, config.acc2_password);
-        //leftSidebarPage.addProject(task.project);
-        return requestManager.post('/projects', querystring.stringify(data), config.api_Token2);
+        leftSidebarPage.addProject(task.project);
         contentPage.addTask(task.nameToBeDeleted, task.priority, data.name);
     });
 

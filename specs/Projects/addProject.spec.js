@@ -19,7 +19,8 @@ describe('Acceptance Tests to Project feature, add a project', function () {
     //Delete project, post condition.
     afterEach(function () {
         //leftSidebarPage.deleteProject(project.name);
-        return requestManager.get('/projects', project.name, config.api_Token1);
+        //return requestManager.get('/projects', project.name, config.api_Token1);
+        let call = browser.call(requestManager.get('/projects', project.name, config.api_Token1));
     });
 
     it('should allow to add new project', function () {
