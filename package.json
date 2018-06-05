@@ -11,7 +11,9 @@
     "mobile": "wdio wdio.mobile.conf.js",
     "saucelabs": "wdio wdio.saucelabs.conf.js",
     "smartphone": "wdio wdio.smartphone.conf.js",
-    "docker": "wdio wdio.docker.conf.js"
+    "dockerFirefox": "wdio wdio.dockerFirefox.conf.js",
+    "dockerChrome": "wdio wdio.dockerChrome.conf.js"
+
   },
   "keywords": [],
   "author": "",
