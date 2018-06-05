@@ -46,6 +46,7 @@ exports.config = {
         browserName: 'chrome'
     }],
 
+
     //
     // ===================
     // Test Configurations
@@ -131,6 +132,7 @@ exports.config = {
         ui: 'bdd',
         timeout: 99999999
     },
+
     //==========
     // allure
     //==========
@@ -252,4 +254,3 @@ exports.config = {
     // onComplete: function(exitCode, config, capabilities) {
     // }
 }
-
