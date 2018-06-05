@@ -131,6 +131,15 @@ exports.config = {
         ui: 'bdd',
         timeout: 99999999
     },
+    //==========
+    // allure
+    //==========
+    reporters: ['dot', 'allure'],
+    reporterOptions: {
+        allure: {
+            outputDir: 'allure-results'
+        }
+    },
     //
     // =====
     // Hooks
