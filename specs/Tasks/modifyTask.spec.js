@@ -30,7 +30,7 @@ describe('Acceptance Tests for Task feature modify', function () {
 
     it('should allow to modify a new task', function () {
         // Adding a task with 'Task added' name.
-        contentPage.modifyTask(task.name, task.nameModified, task.project, task.projectModified, task.priority, task.priorityModified);
+        contentPage.modifyTask(task.name, task.nameModified, task.project, task.projectModified, task.priorityModified);
         expect(contentPage.assertTaskOnProject(task.nameModified, task.projectModified));
         expect(contentPage.assertTaskOnContentPriority(task.nameModified));
     });
