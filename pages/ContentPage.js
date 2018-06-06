@@ -3,8 +3,8 @@ let componentAction = require('../utils/ComponentAction');
 class ContentPage {
 
     constructor() {
-        this.taskNameTextField = '.richtext_editor.sel_richtext_editor'; //'#agenda_view  td.text_box_holder div';
-        this.addTaskToday = '.agenda_add_task , .pe_controller .action';//'#editor a.action';
+        this.taskNameTextField = '.richtext_editor.sel_richtext_editor';
+        this.addTaskToday = '.agenda_add_task , .pe_controller .action';
         this.taskAddSubmit = '#editor a.ist_button span';
         this.taskModifyOption = 'div:not([style*="display: none;"]) td[data-track="task|more_edit"]';
         this.taskSaveButton = ' a.ist_button.ist_button_red.submit_btn';
@@ -13,18 +13,16 @@ class ContentPage {
         this.projectOnContent = '#editor a.project_link';
         this.timeZoneAlert = '#GB_window';
         this.closeTimeZoneAlertButton = '.close span';
-
         this.termsDialog = '.terms_dialog';
         this.agreeTermsButton = '.terms_dialog .ist_button';
-
-
         this.flag = '.form_action_icon';
         this.priority = '//div[contains(@class,"ist_menu priority_menu")]//img[contains(@class,"NUMPRIORITY")]';
-
-        this.taskPriority = 'img[data-track="task_form|priority"]';//this.taskPriority = '.cmp_priority4';
+        this.taskPriority = 'img[data-track="task_form|priority"]';
         this.taskToProjectButton = '.cmp_project.form_action_icon';
         this.projectsListForTask = '#ist_complete_result';
         this.projectListOnLeftSidebar = '#projects_list';
+        this.modalText = '.text_holder';
+        this.closeProjectNotFoundAlert = '.ist_button.ist_button_red';
     }
     lastProjectOnList() {
         return componentAction.lastElementOnList(this.projectListOnLeftSidebar, 1);
@@ -119,6 +117,7 @@ class ContentPage {
     }
 
     addTask(taskName, priority, projectForTasks) {
+        //leftSidebarPage.returnToTodaySection();
         browser.refresh();
         this.clickAddTaskLink();
         this.setTaskNameTextField(taskName);
@@ -175,7 +174,11 @@ class ContentPage {
 
     closeTimeZoneAlert() {
         if (browser.isVisible(this.timeZoneAlert)) {
-            componentAction.clickElement(this.closeTimeZoneAlertButton);
+            /*if(componentAction.getElement(this.modalText).getText() == 'Project not found') {
+                componentAction.clickElement(this.closeProjectNotFoundAlert);
+            } else {*/
+                componentAction.clickElement(this.closeTimeZoneAlertButton);
+            //}
         }
     }
 

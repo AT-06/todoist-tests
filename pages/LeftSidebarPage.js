@@ -45,8 +45,10 @@ class LeftSidebarPage {
     }
 
     returnToTodaySection() {
-        componentAction.moveToComponent(this.optionsSection);
-        componentAction.clickElement(this.todaySection);
+        if (browser.isVisible(this.optionsSection)) {
+            componentAction.moveToComponent(this.optionsSection);
+            componentAction.clickElement(this.todaySection);
+        }
     }
 
     // This method is to add new project.

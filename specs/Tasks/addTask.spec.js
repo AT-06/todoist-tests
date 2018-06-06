@@ -7,30 +7,31 @@ let leftSidebarPage = require('../../pages/LeftSidebarPage');
 let toolbarPage = require('../../pages/ToolbarPage');
 let requestManager = require('../../api/RequestManager');
 let querystring = require('querystring');
+let apiCommonActions = require('../../api/APICommonActions');
 
 describe('Acceptance Tests for Task feature, add a task', function () {
     let task = {
         name: 'Task added',
-        nameForProject: 'Task added to Project',
-        project: 'Project for tasks',
         priority: '3'
     };
 
     let data = {
         name: 'Project to test task'
     };
-
-
+    let response;
     //Login application.
     beforeEach(function () {
         loginPage.login(config.acc2_email, config.acc2_password);
-        return requestManager.post('/projects', querystring.stringify(data), config.api_Token2);
+        response = browser.call(() => {return requestManager.post('/projects', querystring.stringify(data), config.api_Token2)});
     });
 
     //Delete task, post condition.
     afterEach(function () {
-        return requestManager.get('/tasks', task.name, config.api_Token2);
-        return requestManager.get('/projects', data.name, config.api_Token2);
+        let status = browser.call(() => {return requestManager.get('/tasks', config.api_Token2)});
+        let id = apiCommonActions.getTaskId(status.response, task.name);
+        let deleteTask = browser.call(() => {return requestManager.delete('/tasks/' + id, config.api_Token2)});
+        let deleteProject = browser.call(() => {return requestManager.delete('/projects/' + response.response.id, config.api_Token2)});
+        //browser.refresh();
     });
 
     it('should allow to add a new task to created project', function () {
