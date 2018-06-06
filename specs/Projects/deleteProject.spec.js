@@ -8,21 +8,21 @@ let requestManager = require('../../api/RequestManager');
 let querystring = require('querystring');
 
 describe('Acceptance Tests to Project feature, delete a project', function () {
-    let data = {
+    let project = {
         name: 'Project to test delete'
     };
-
+    let response;
     //Login application.
     beforeEach(function () {
         // Login on website with credentials.
         loginPage.login(config.acc1_email, config.acc1_password);
         //leftSidebarPage.addProject(project.name);
-        return requestManager.post('/projects', querystring.stringify(data), config.api_Token1);
+        response = browser.call(() => {return requestManager.post('/projects', querystring.stringify(project), config.api_Token1)});
     });
 
     it('should allow to delete a project', function () {
-        leftSidebarPage.deleteProject(requestManager.getResponse().data.name);
+        leftSidebarPage.deleteProject(project.name);
         // Verify if last project added "Project to delete" has been deleted.
-        expect(leftSidebarPage.lastProjectOnList.getText()).to.not.have.equal(requestManager.getResponse().data.name);
+        expect(leftSidebarPage.lastProjectOnList.getText()).to.not.equal(response.response.name);
     });
 });

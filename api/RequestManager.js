@@ -18,14 +18,20 @@ class RequestManager {
         });
     }
 
-    get(endpoint, projectName, token) {
+    get(endpoint, token) {
         return this.requestInstance(token).request({
             method: 'GET',
             url: endpoint,
             responseType: 'json'
-        //}).then(response => this.deleteProject(response.data, projectName, endpoint, token))
-        }).then(response => this.setResponse(response))
-            .catch(error => this.setError(error));
+        }).then(response => {
+            return {'response' : response.data,
+                    'status' : response.status
+            };
+        }).catch(error => {
+            return {'response' : error.data,
+                    'status' : error.status
+            };
+        });
     }
 
     post(endpoint, data, token) {
@@ -34,8 +40,15 @@ class RequestManager {
             url: endpoint,
             responseType: 'json',
             data : data
-        }).then(response => this.setResponse(response))
-            .catch(error => this.setError(error));
+        }).then(response => {
+            return {'response' : response.data,
+                'status' : response.status
+            };
+        }).catch(error => {
+            return {'response' : error.data,
+                'status' : error.status
+            };
+        });
     }
 
     put(endpoint, body, token) {
@@ -53,17 +66,24 @@ class RequestManager {
             method: 'DELETE',
             url: endpoint,
             responseType: 'json'
-        }).then(response => this.setResponse(response))
-            .catch(error => this.setError(error));
+        }).then(response => {
+            return {
+                'response' : response.data,
+                'status' : response.status
+            };
+        }).catch(error => {
+            return {
+                'response' : error.data,
+                'status' : error.status
+            };
+        });
     }
 
     setResponse(response) {
-        console.log("response:" + response.status);
         this.requestResponse = response;
     }
 
     setError(error) {
-        console.log("error:" + error.message);
         this.error = error.status;
     }
 

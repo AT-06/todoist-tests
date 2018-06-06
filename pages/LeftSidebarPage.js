@@ -77,9 +77,9 @@ class LeftSidebarPage {
     }
     // This method is to modify one project.
     modifyProject(projectNameToModify, newProjectName) {
+        browser.refresh();
         this.closeModalTimeZone();
         this.verifyEnvironment();
-        browser.refresh();
         // Adding new project to modify.
         if (this.lastProjectOnList.getText() === projectNameToModify) {
             this.chooseProjectAction(this.projectModifyOption);
@@ -90,9 +90,9 @@ class LeftSidebarPage {
 
     // This method is to delete a project.
     deleteProject(projectNameToDelete) {
+        browser.refresh();
         this.closeModalTimeZone();
         this.verifyEnvironment();
-        browser.refresh();
         if (this.lastProjectOnList.getText().includes(projectNameToDelete)) {
             this.chooseProjectAction(this.projectDeleteOption);
             this.acceptDeleteProject();
