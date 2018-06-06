@@ -45,7 +45,6 @@ class ContentPage {
 
     // Getting String Project Name on Editor.
     assertTaskOnContent(task) {
-        //this.lastProjectOnList().click();
         let element = componentAction.elementOnList(this.taskList, task);
         return (element != null) ? (element.getText === task) : false;
     }
@@ -65,7 +64,7 @@ class ContentPage {
 
     assertTaskOnContentPriority(task) {
         this.clickLastTask(task);
-        let ret = browser.isVisible(this.flag);
+        let ret = browser.isVisible(this.taskPriority);
         this.lastProjectOnList().click();
         return ret;
     }
@@ -174,11 +173,7 @@ class ContentPage {
 
     closeTimeZoneAlert() {
         if (browser.isVisible(this.timeZoneAlert)) {
-            /*if(componentAction.getElement(this.modalText).getText() == 'Project not found') {
-                componentAction.clickElement(this.closeProjectNotFoundAlert);
-            } else {*/
-                componentAction.clickElement(this.closeTimeZoneAlertButton);
-            //}
+            componentAction.clickElement(this.closeTimeZoneAlertButton);
         }
     }
 

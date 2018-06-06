@@ -18,18 +18,19 @@ describe('Acceptance Tests for Task feature Delete', function () {
     let data = {
         name: 'Project to test delete task'
     };
+    let response;
+    let deleteProject;
 
     //Login and add a new task.
     beforeEach(function () {
+        response = browser.call(() => {return requestManager.post('/projects', querystring.stringify(data), config.api_Token2)});
         loginPage.login(config.acc2_email, config.acc2_password);
-        leftSidebarPage.addProject(task.project);
         contentPage.addTask(task.nameToBeDeleted, task.priority, data.name);
     });
 
     //Delete project, post condition.
     afterEach(function () {
-        //leftSidebarPage.deleteProject(task.project);
-        return requestManager.get('/projects', data.name, config.api_Token2);
+        deleteProject = browser.call(() => {return requestManager.delete('/projects/' + response.response.id, config.api_Token2)});
     });
 
     it('should allow to delete a task', function () {
