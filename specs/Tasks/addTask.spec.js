@@ -12,26 +12,30 @@ let apiCommonActions = require('../../api/APICommonActions');
 describe('Acceptance Tests for Task feature, add a task', function () {
     let task = {
         name: 'Task added',
-        priority: '3'
+        priority: '3',
+        quickPriority: '1'
     };
-
     let data = {
         name: 'Project to test task'
     };
     let response;
+    let status;
+    let id;
+    let deleteTask;
+    let deleteProject;
+
     //Login application.
     beforeEach(function () {
-        loginPage.login(config.acc2_email, config.acc2_password);
         response = browser.call(() => {return requestManager.post('/projects', querystring.stringify(data), config.api_Token2)});
+        loginPage.login(config.acc2_email, config.acc2_password);
     });
 
     //Delete task, post condition.
     afterEach(function () {
-        let status = browser.call(() => {return requestManager.get('/tasks', config.api_Token2)});
-        let id = apiCommonActions.getTaskId(status.response, task.name);
-        let deleteTask = browser.call(() => {return requestManager.delete('/tasks/' + id, config.api_Token2)});
-        let deleteProject = browser.call(() => {return requestManager.delete('/projects/' + response.response.id, config.api_Token2)});
-        //browser.refresh();
+        status = browser.call(() => {return requestManager.get('/tasks', config.api_Token2)});
+        id = apiCommonActions.getTaskId(status.response, task.name);
+        deleteTask = browser.call(() => {return requestManager.delete('/tasks/' + id, config.api_Token2)});
+        deleteProject = browser.call(() => {return requestManager.delete('/projects/' + response.response.id, config.api_Token2)});
     });
 
     it('should allow to add a new task to created project', function () {
@@ -43,7 +47,7 @@ describe('Acceptance Tests for Task feature, add a task', function () {
 
     it('should allow to add a quick task', function () {
         // Adding and deleting a task.
-        toolbarPage.addQuickTask(task.name, task.priority, data.name);
+        toolbarPage.addQuickTask(task.name, task.quickPriority, data.name);
         expect(contentPage.assertTaskOnContent(task.name));
         expect(contentPage.assertTaskOnContentPriority(task.name));
     });

@@ -25,8 +25,11 @@ class ToolbarPage {
     }
 
     clickAddTaskButton() {
+        console.log("qqqqq1");
         componentAction.clickElement(this.quickTaskAddButton);
-        leftSidebarPage.goToCurrentSection();
+        console.log("qqqqq2");
+        //leftSidebarPage.goToCurrentSection();
+        console.log("qqqqq3");
         browser.pause(5000);
     }
 
