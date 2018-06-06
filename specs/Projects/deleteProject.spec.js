@@ -16,7 +16,6 @@ describe('Acceptance Tests to Project feature, delete a project', function () {
     beforeEach(function () {
         // Login on website with credentials.
         loginPage.login(config.acc1_email, config.acc1_password);
-        //leftSidebarPage.addProject(project.name);
         response = browser.call(() => {return requestManager.post('/projects', querystring.stringify(project), config.api_Token1)});
     });
 
