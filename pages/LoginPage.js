@@ -1,5 +1,4 @@
 let componentAction = require('../utils/ComponentAction');
-let currentUserLogin = null;
 
 class LoginPage {
 
@@ -9,6 +8,7 @@ class LoginPage {
         this.loginSubmit = '#login_form';
         this.userOptions = 'gear_holder';
         this.logout = 'td[data-track="navigation|logout"]';
+        this.currentUserLogin = null;
     }
 
     // Opening login page.
@@ -18,8 +18,8 @@ class LoginPage {
 
     // Logging on www.todosit.com website.
     login(email, password) {
-        if (email !== currentUserLogin) {
-            if (currentUserLogin === null) {
+        if (email !== this.currentUserLogin) {
+            if (this.currentUserLogin === null) {
                 this.open();
             }
             else { // going to ogOutl
@@ -28,7 +28,7 @@ class LoginPage {
             componentAction.setElementValue(this.loginEmail, email);
             componentAction.setElementValue(this.loginPassword, password);
             componentAction.clickElement(this.loginSubmit);
-            currentUserLogin = email;
+            this.currentUserLogin = email;
         }
 
 

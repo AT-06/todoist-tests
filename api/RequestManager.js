@@ -3,43 +3,56 @@ let config = require('../config.json');
 
 class RequestManager {
     constructor() {
-        this.status;
+        this.requestResponse;
         this.error;
+        this.projectId;
     }
     
-    intanceRequests() {
+    requestInstance(token) {
         return axios.create({
             baseURL: config.api_URL,
             timeout: 10000,
             headers: {
-                'Authorization': config.api_Token
+                'Authorization': token
             }
         });
     }
 
-    get(endpoint) {
-        return this.intanceRequests().request({
+    get(endpoint, token) {
+        return this.requestInstance(token).request({
             method: 'GET',
             url: endpoint,
             responseType: 'json'
-        }).then(response => this.setResponse(response))
-            .catch(error => this.setError(error));
+        }).then(response => {
+            return {'response' : response.data,
+                    'status' : response.status
+            };
+        }).catch(error => {
+            return {'response' : error.data,
+                    'status' : error.status
+            };
+        });
     }
 
-    post(endpoint, data) {
-        return this.intanceRequests().request({
+    post(endpoint, data, token) {
+        return this.requestInstance(token).request({
             method: 'POST',
             url: endpoint,
-            responseType: 'application/json',
-            data: {
-                name: 'Project created API'
-            }
-        }).then(response => this.setResponse(response))
-            .catch(error => this.setError(error));
+            responseType: 'json',
+            data : data
+        }).then(response => {
+            return {'response' : response.data,
+                'status' : response.status
+            };
+        }).catch(error => {
+            return {'response' : error.data,
+                'status' : error.status
+            };
+        });
     }
 
-    put(endpoint, body) {
-        return this.intanceRequests().request({
+    put(endpoint, body, token) {
+        return this.requestInstance(token).request({
             method: 'PUT',
             url: endpoint,
             responseType: 'json',
@@ -48,18 +61,26 @@ class RequestManager {
             .catch(error => this.setError(error));
     }
 
-    delete(endpoint) {
-        return this.intanceRequests().request({
+    delete(endpoint, token) {
+        return this.requestInstance(token).request({
             method: 'DELETE',
             url: endpoint,
             responseType: 'json'
-        }).then(response => this.setResponse(response))
-            .catch(error => this.setError(error));
+        }).then(response => {
+            return {
+                'response' : response.data,
+                'status' : response.status
+            };
+        }).catch(error => {
+            return {
+                'response' : error.data,
+                'status' : error.status
+            };
+        });
     }
 
     setResponse(response) {
-        console.log("status:" + response.status);
-        this.status = response.status;
+        this.requestResponse = response;
     }
 
     setError(error) {
@@ -67,7 +88,39 @@ class RequestManager {
     }
 
     getResponse() {
-        return this.status;
+        return this.requestResponse;
+    }
+
+
+
+    deleteProject(response, projectName, endpoint, token) {
+        if (endpoint.includes('project')) {
+            return this.delete(endpoint + '/' + this.getProjectId(response, projectName), token);
+        } else {
+            return this.delete(endpoint + '/' + this.getTaskId(response, projectName), token);
+        }
+    }
+    getProjectId(response, projectName) {
+        let id;
+        Object.entries(response).forEach(
+            ([key, value]) => {
+                if (value.name == projectName) {
+                    id = value.id;
+                }
+            }
+        );
+        return id;
+    }
+    getTaskId(response, taskName) {
+        let id;
+        Object.entries(response).forEach(
+            ([key, value]) => {
+                if (value.content == taskName) {
+                    id = value.id;
+                }
+            }
+        );
+        return id;
     }
 }
 

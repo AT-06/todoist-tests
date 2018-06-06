@@ -10,7 +10,7 @@ class LeftSidebarPage {
         this.projectListOnLeftSidebar = '#projects_list';
         this.projectModifyOption = 'td[data-track="projects|menu_edit"]';
         this.projectSaveButton = 'a[data-track="projects|edit_confirm"]';
-        this.projectDeleteOption = 'td[data-track="projects|menu_delete"]';//'#menu_delete_text';
+        this.projectDeleteOption = 'td[data-track="projects|menu_delete"]';
         this.leftMenu = '#left_menu';
         this.menuHideButton = '.cmp_light_menu_toggle';
         this.projectsList = '#projects_list';
@@ -45,8 +45,10 @@ class LeftSidebarPage {
     }
 
     returnToTodaySection() {
-        componentAction.moveToComponent(this.optionsSection);
-        componentAction.clickElement(this.todaySection);
+        if (browser.isVisible(this.optionsSection)) {
+            componentAction.moveToComponent(this.optionsSection);
+            componentAction.clickElement(this.todaySection);
+        }
     }
 
     // This method is to add new project.
@@ -77,6 +79,7 @@ class LeftSidebarPage {
     }
     // This method is to modify one project.
     modifyProject(projectNameToModify, newProjectName) {
+        browser.refresh();
         this.closeModalTimeZone();
         this.verifyEnvironment();
         // Adding new project to modify.
@@ -89,6 +92,7 @@ class LeftSidebarPage {
 
     // This method is to delete a project.
     deleteProject(projectNameToDelete) {
+        browser.refresh();
         this.closeModalTimeZone();
         this.verifyEnvironment();
         if (this.lastProjectOnList.getText().includes(projectNameToDelete)) {
