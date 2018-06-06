@@ -142,15 +142,13 @@ class ContentPage {
         browser.pause(5000);
     }
 
-    modifyTask(taskNameToModify, newTaskName, projectNameToModify, newProjectName, priorityToModify, newTaskPriority) {
+    modifyTask(taskNameToModify, newTaskName, projectNameToModify, newProjectName, newTaskPriority) {
         this.lastProjectOnList().click();
         this.selectTaskAtTheList(taskNameToModify);
         this.clickSubMenuEditOption();
         this.setTaskNameTextField(newTaskName);
 
-        componentAction.clickElement(this.flag);
-        componentAction.clickElement(this.priority.concat(this.taskPriority.replace('4', priorityToModify).replace(priorityToModify, newTaskPriority)));
-
+        this.selectPriorityFlag(newTaskPriority);
         this.clickSelectProject();
         this.clickProjectFromList(newProjectName, this.projectsListForTask);
         this.clickSaveButton();
