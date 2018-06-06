@@ -15,8 +15,8 @@ describe('Acceptance Tests to Project feature, delete a project', function () {
     //Login application.
     beforeEach(function () {
         // Login on website with credentials.
-        loginPage.login(config.acc1_email, config.acc1_password);
         response = browser.call(() => {return requestManager.post('/projects', querystring.stringify(project), config.api_Token1)});
+        loginPage.login(config.acc1_email, config.acc1_password);
     });
 
     it('should allow to delete a project', function () {

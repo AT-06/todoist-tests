@@ -19,8 +19,8 @@ describe('Acceptance Tests to Project feature, modify a project', function () {
 
     //Login and add a new project.
     beforeEach(function () {
-        loginPage.login(config.acc1_email, config.acc1_password);
         response = browser.call(() => {return requestManager.post('/projects', querystring.stringify(data), config.api_Token1)});
+        loginPage.login(config.acc1_email, config.acc1_password);
     });
 
     //Delete project, post condition.

@@ -90,38 +90,6 @@ class RequestManager {
     getResponse() {
         return this.requestResponse;
     }
-
-
-
-    deleteProject(response, projectName, endpoint, token) {
-        if (endpoint.includes('project')) {
-            return this.delete(endpoint + '/' + this.getProjectId(response, projectName), token);
-        } else {
-            return this.delete(endpoint + '/' + this.getTaskId(response, projectName), token);
-        }
-    }
-    getProjectId(response, projectName) {
-        let id;
-        Object.entries(response).forEach(
-            ([key, value]) => {
-                if (value.name == projectName) {
-                    id = value.id;
-                }
-            }
-        );
-        return id;
-    }
-    getTaskId(response, taskName) {
-        let id;
-        Object.entries(response).forEach(
-            ([key, value]) => {
-                if (value.content == taskName) {
-                    id = value.id;
-                }
-            }
-        );
-        return id;
-    }
 }
 
 module.exports = new RequestManager();
