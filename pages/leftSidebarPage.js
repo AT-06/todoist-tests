@@ -1,5 +1,5 @@
-let contentPage = require('../pages/ContentPage');
-let componentAction = require('../utils/ComponentAction');
+let contentPage = require('./contentPage');
+let componentAction = require('../utils/commonAction');
 let currentSection = '.filter.current';
 
 class LeftSidebarPage {

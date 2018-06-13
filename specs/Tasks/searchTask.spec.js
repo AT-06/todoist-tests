@@ -1,11 +1,11 @@
 // searchTask.spec.js
 let config = require('../../config.json');
 let expect = require('chai').expect;
-let loginPage = require('../../pages/LoginPage');
-let contentPage = require('../../pages/ContentPage');
-let toolbarPage = require('../../pages/ToolbarPage');
-let leftSidebarPage = require('../../pages/LeftSidebarPage');
-let requestManager = require('../../api/RequestManager');
+let loginPage = require('../../pages/loginPage');
+let contentPage = require('../../pages/contentPage');
+let toolbarPage = require('../../pages/toolbarPage');
+let leftSidebarPage = require('../../pages/leftSidebarPage');
+let requestManager = require('../../api/requestManager');
 let querystring = require('querystring');
 let apiCommonActions = require('../../api/APICommonActions');
 

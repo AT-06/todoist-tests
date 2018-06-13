@@ -1,4 +1,4 @@
-let componentAction = require('../utils/ComponentAction');
+let componentAction = require('../utils/commonAction');
 
 class LoginPage {
 
