@@ -1,11 +1,12 @@
 // Mobile configs:
-var defaults = require("./wdio.conf.js").config;
+let defaults = require("./wdio.conf.js").config;
+let configure = require('./config.json');
 var _ = require("lodash");
 
 var overrides = {
     services: ['sauce'],
-    user: process.env.SAUCE_USERNAME,
-    key: process.env.SAUCE_ACCESS_KEY,
+    user: configure.sauceUserName,
+    key: configure.sauceKEY,
     sauceConnect: true,
     capabilities: [{
         appiumVersion: '1.8.0',

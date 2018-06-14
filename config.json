@@ -5,5 +5,14 @@
   "acc2_password": "",
   "api_URL": "https://beta.todoist.com/API/v8",
   "api_Token1": "",
-  "api_Token2": ""
+  "api_Token2": "",
+
+
+
+  "sauceUserName": "",
+  "sauceKEY": "",
+
+  "browserName": "",
+  "platform": "",
+  "version": ""
 }

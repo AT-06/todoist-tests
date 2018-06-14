@@ -4,7 +4,7 @@ const introTaskButton = '#GB_window img.cmp_small_close';
 const timeToWait = 30000;
 const modalDeleteButton = "#GB_window a.ist_button.ist_button_red";
 
-class ComponentAction {
+class CommonAction {
 
     // Return is a element visible and existing.
     static waitElement(elementCSS) {
@@ -85,4 +85,4 @@ class ComponentAction {
     }
 }
 
-module.exports = ComponentAction;
+module.exports = CommonAction;

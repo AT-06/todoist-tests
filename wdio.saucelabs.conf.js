@@ -1,13 +1,21 @@
 // Let's load the default configs:
-var defaults = require("./wdio.conf.js").config;
+let defaults = require("./wdio.conf.js").config;
+let configure = require('./config.json');
 var _ = require("lodash");
 
 var overrides = {
     services: ['sauce'],
-    user: process.env.SAUCE_USERNAME,
-    key: process.env.SAUCE_ACCESS_KEY,
-    sauceConnect: true
+    user: configure.sauceUserName,
+    key: configure.sauceKEY,
+    sauceConnect: true,
+    capabilities: [{
+        browserName: configure.browserName,
+        platform: configure.platform,
+        version: configure.version,
+        screenResolution: '1024x768'
+
+    }]
 };
 
-// Send the merged config to wdio
+// Send the merged defaults to wdio
 exports.config = _.defaultsDeep(overrides, defaults);

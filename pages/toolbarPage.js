@@ -1,6 +1,6 @@
-let componentAction = require('../utils/ComponentAction');
-let leftSidebarPage = require('../pages/LeftSidebarPage');
-let contentPage = require('../pages/ContentPage');
+let componentAction = require('../utils/commonAction');
+let leftSidebarPage = require('./leftSidebarPage');
+let contentPage = require('./contentPage');
 
 class ToolbarPage {
     constructor() {

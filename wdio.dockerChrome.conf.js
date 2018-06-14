@@ -3,7 +3,7 @@ var defaults = require("./wdio.conf.js").config;
 var _ = require("lodash");
 
 var overrides = {
-    host : "10.28.109.106",
+    host : "10.28.109.110",
     port : 4444,
     capabilities: [{
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium

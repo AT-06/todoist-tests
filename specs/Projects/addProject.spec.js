@@ -1,10 +1,10 @@
 // addProject.spec.js
 let config = require('../../config.json');
 let expect = require('chai').expect;
-let loginPage = require('../../pages/LoginPage');
-let leftSidebarPage = require('../../pages/LeftSidebarPage');
-let contentPage = require('../../pages/ContentPage');
-let requestManager = require('../../api/RequestManager');
+let loginPage = require('../../pages/loginPage');
+let leftSidebarPage = require('../../pages/leftSidebarPage');
+let contentPage = require('../../pages/contentPage');
+let requestManager = require('../../api/requestManager');
 let apiCommonActions = require('../../api/APICommonActions');
 
 describe('Acceptance Tests to Project feature, add a project', function () {
