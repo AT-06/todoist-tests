@@ -74,12 +74,12 @@ CONTRIBUTORS
 
 Current contributors:
 
-    -Daniel Caballero Rimassa (danielditer) - [a link](https://github.com/danielditer)
-    -Ariel Gonzales Vargas  (pipo411) - [a link](https://github.com/pipo411)
-    -Carlos Gonzales (carledriss) - [a link](https://github.com/carledriss)
-    -Christian Galarza Crespo (Chritian92) - [a link](https://github.com/Chritian92)
-    -Escarleth Ledezma Quiroga (EscarlethFatima) - [a link](https://github.com/EscarlethFatima)
-    -Jimmy Romero Sejas (JimmyRomero) - [a link](https://github.com/JimmyRomero)
-    -Manuel Valdez Valda (manu863018) - [a link](https://github.com/manu863018)
-    -Omar Limbert Huanca Sanchez (omar-limbert) - [a link](https://github.com/omar-limbert)
-    -Maria Canqui Macias (mery) - [a link](https://github.com/PanDeBatalla94)
+    -Daniel Caballero Rimassa (danielditer) - (https://github.com/danielditer)
+    -Ariel Gonzales Vargas  (pipo411) - (https://github.com/pipo411)
+    -Carlos Gonzales (carledriss) - (https://github.com/carledriss)
+    -Christian Galarza Crespo (Chritian92) - (https://github.com/Chritian92)
+    -Escarleth Ledezma Quiroga (EscarlethFatima) - (https://github.com/EscarlethFatima)
+    -Jimmy Romero Sejas (JimmyRomero) - (https://github.com/JimmyRomero)
+    -Manuel Valdez Valda (manu863018) - (https://github.com/manu863018)
+    -Omar Limbert Huanca Sanchez (omar-limbert) - (https://github.com/omar-limbert)
+    -Maria Canqui Macias (mery) - (https://github.com/PanDeBatalla94)
