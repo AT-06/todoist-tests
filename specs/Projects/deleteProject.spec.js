@@ -22,6 +22,6 @@ describe('Acceptance Tests to Project feature, delete a project', function () {
     it('should allow to delete a project', function () {
         leftSidebarPage.deleteProject(project.name);
         // Verify if last project added "Project to delete" has been deleted.
-        expect(leftSidebarPage.lastProjectOnList.getText()).to.not.equal(response.response.name);
+        expect(leftSidebarPage.lastProjectOnList.getText()).to.not.equal(response.name);
     });
 });
